@@ -4,7 +4,7 @@ import { picture, size } from '../../lib/img';
 import { Disposer } from '../../lib/dispose';
 import { Stepper } from '../../lib/stepper';
 import { arrowButton, bindArrows, goBack, header, mountHeader } from '../../ui/ui';
-import { Glide } from '../galeria/glide';
+import { Glide } from '../../lib/glide';
 import notFound from '../not-found';
 import { COPY_X, COUNTRIES, SLIDE_W } from './data';
 import { richLines } from './text';

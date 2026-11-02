@@ -6,7 +6,7 @@ import { Stepper } from '../../lib/stepper';
 import { arrowButton, bindArrows, goBack, header, mountHeader } from '../../ui/ui';
 import notFound from '../not-found';
 import { WORKS, backHref, workImage } from './data';
-import { Glide } from './glide';
+import { Glide } from '../../lib/glide';
 import './galeria.css';
 
 const N = WORKS.length;

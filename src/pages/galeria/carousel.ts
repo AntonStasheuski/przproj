@@ -5,7 +5,7 @@ import { Disposer } from '../../lib/dispose';
 import { Stepper } from '../../lib/stepper';
 import { arrowButton, bindArrows, goBack, header, mountHeader } from '../../ui/ui';
 import { WORKS, workImage } from './data';
-import { Glide } from './glide';
+import { Glide } from '../../lib/glide';
 import './galeria.css';
 
 /** vertical offsets of the cards and caption gaps, as drawn in Figma (px) */

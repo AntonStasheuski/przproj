@@ -1,5 +1,5 @@
 import { animate } from 'motion';
-import { SPRING_SLOW, reducedMotion } from '../../lib/motion';
+import { SPRING_SLOW, reducedMotion } from './motion';
 
 /**
  * Animates a unitless position written to one CSS custom property. Several strips read the same
