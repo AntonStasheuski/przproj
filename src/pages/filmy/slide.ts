@@ -1,12 +1,14 @@
 import type { AnimationPlaybackControls } from 'motion';
 import { play } from '../../lib/motion';
+import './slide.css';
 
 type Spring = Parameters<typeof play>[2];
 
 /**
  * Every carousel track in the section is `translateX(calc(var(--pos) * -100%))` with the track as
  * wide as one step, so a single animated number moves all tracks under `root` in sync
- * (the film page moves nine of them at once).
+ * (the film page moves nine of them at once). Like lib/glide.ts, but with a selectable spring:
+ * film pages use GENTLE, which Glide (fixed to SLOW) cannot do yet.
  */
 export class Slide {
   private controls: AnimationPlaybackControls | null = null;

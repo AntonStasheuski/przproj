@@ -3,10 +3,9 @@ import { html, toElement, vars } from '../../lib/html';
 import { picture } from '../../lib/img';
 import { Disposer } from '../../lib/dispose';
 import { Stepper } from '../../lib/stepper';
-import { SPRING_SLOW } from '../../lib/motion';
+import { Glide } from '../../lib/glide';
 import { arrowButton, bindArrows, header, mountHeader, sectionBar } from '../../ui/ui';
 import { FILMS, PER_PAGE } from './data';
-import { Slide } from './slide';
 import './plakaty.css';
 
 /**
@@ -79,7 +78,7 @@ const page: PageFactory = ({ url }) => {
 
   // the mobile layout shows all posters at once (plakaty.css)
   const paged = window.matchMedia('(min-width: 1024px)');
-  let slide: Slide | null = null;
+  let glide: Glide | null = null;
   const sync = (index: number) => {
     // posters of the hidden page are out of the tab order and the accessibility tree
     items.forEach((it) => (it.inert = paged.matches && Number(it.dataset.page) !== index));
@@ -89,7 +88,7 @@ const page: PageFactory = ({ url }) => {
   const stepper = new Stepper({
     count: PAGES,
     onChange: (to) => {
-      slide?.to(to, SPRING_SLOW);
+      glide?.to(to);
       sync(to);
     },
   });
@@ -98,12 +97,12 @@ const page: PageFactory = ({ url }) => {
     title: mode.title,
     el,
     mount: () => {
-      if (track) slide = new Slide(track, stepper.index);
+      if (track) glide = new Glide(track, '--pos', stepper.index);
       sync(stepper.index);
       disposer.add(mountHeader(el));
       disposer.add(bindArrows(el, stepper));
       disposer.add(stepper.bindKeys());
-      disposer.add(() => slide?.stop());
+      disposer.add(() => glide?.stop());
       const onLayout = () => sync(stepper.index);
       paged.addEventListener('change', onLayout);
       disposer.add(() => paged.removeEventListener('change', onLayout));

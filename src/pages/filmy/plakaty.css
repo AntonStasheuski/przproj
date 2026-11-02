@@ -1,11 +1,5 @@
 /* /filmy/plakaty and /filmy/fakty — frames 198:350, 376:2679, 378:2705, 378:2732 */
 
-@property --pos {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
-
 .filmy-carousel__window {
   position: absolute;
   left: calc(45 * var(--u));
