@@ -1,0 +1,306 @@
+/* FAKTY accordion. Geometry in design px (× --u); the window is 1459×600 at 26,140. */
+
+.fk-window {
+  position: absolute;
+  left: calc(26 * var(--u));
+  top: calc(140 * var(--u));
+  width: calc(1459 * var(--u));
+  height: calc(600 * var(--u));
+  overflow: hidden;
+}
+
+.fk-panel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(847 * var(--u));
+  height: calc(600 * var(--u));
+  background: var(--c-bg);
+}
+
+/* resting layout: slot 0 is open, slots 1–4 are 153 px strips following it.
+   x = 847 + 153 (s − 1) as a percentage of the panel width */
+.fk-panel[data-slot='0'] {
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+
+.fk-panel:not([data-slot='0']) {
+  clip-path: inset(0 calc(694 / 847 * 100%) 0 0);
+}
+
+.fk-panel[data-slot='1'] {
+  transform: translateX(calc(847 / 847 * 100%));
+}
+
+.fk-panel[data-slot='2'] {
+  transform: translateX(calc(1000 / 847 * 100%));
+}
+
+.fk-panel[data-slot='3'] {
+  transform: translateX(calc(1153 / 847 * 100%));
+}
+
+.fk-panel[data-slot='4'] {
+  transform: translateX(calc(1306 / 847 * 100%));
+}
+
+.fk-img,
+.fk-strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.fk-img {
+  width: 100%;
+}
+
+.fk-panel[data-dim] .fk-img img {
+  mix-blend-mode: lighten;
+}
+
+.fk-panel[data-dim] .fk-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgb(35 35 40 / 0.8);
+  mix-blend-mode: multiply;
+}
+
+.fk-strip {
+  width: calc(153 * var(--u));
+  opacity: 1;
+}
+
+.fk-panel[data-slot='0'] .fk-strip {
+  opacity: 0;
+}
+
+.fk-img picture,
+.fk-img img,
+.fk-strip picture,
+.fk-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fk-num {
+  position: absolute;
+  left: 0;
+  top: calc(516 * var(--u));
+  width: calc(822 * var(--u));
+  text-align: right;
+  font-family: var(--f-head);
+  font-weight: 700;
+  font-size: calc(58 * var(--u));
+  line-height: calc(69 * var(--u));
+  color: var(--c-white);
+  transform: translateX(calc(-694 / 822 * 100%));
+}
+
+.fk-panel[data-slot='0'] .fk-num {
+  transform: none;
+}
+
+.fk-content {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.fk-panel[data-slot='0'] .fk-content {
+  opacity: 1;
+}
+
+.fk-head {
+  position: absolute;
+  left: calc(25 * var(--u));
+  top: calc(25 * var(--u));
+  font-family: var(--f-head);
+  font-weight: 700;
+  font-size: calc(58 * var(--u));
+  line-height: calc(69 * var(--u));
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--c-white);
+}
+
+.fk-head--title {
+  top: calc(41 * var(--u));
+}
+
+.fk-accent--title {
+  position: absolute;
+  left: calc(25 * var(--u));
+  top: calc(15 * var(--u));
+  color: var(--c-white);
+}
+
+.fk-body {
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  bottom: calc(var(--b) * var(--u));
+  width: calc(var(--w) * var(--u));
+  display: flex;
+  flex-direction: column;
+  gap: calc(15 * var(--u));
+  color: var(--c-white);
+}
+
+.fk-text {
+  font-family: var(--f-ui);
+  font-weight: 700;
+  font-size: calc(24 * var(--u));
+  line-height: calc(30 * var(--u));
+  white-space: pre-line;
+}
+
+.fk .arrow {
+  top: calc(320 * var(--u));
+  z-index: 2;
+}
+
+.fk .arrow--prev {
+  left: calc(45 * var(--u));
+}
+
+.fk .arrow--next {
+  left: calc(1396 * var(--u));
+}
+
+.fk-filmy {
+  transition: color 1.28s var(--ease-out);
+}
+
+.fk-filmy:hover {
+  color: var(--c-gray);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fk-filmy {
+    transition: none;
+  }
+}
+
+/* mobile: a vertical accordion, the open panel is on top, strips follow; no JS animation */
+@media (max-width: 1023px) {
+  .fk > main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: calc(16 * var(--u));
+    padding: 0 calc(16 * var(--u)) calc(24 * var(--u));
+  }
+
+  .fk-window {
+    position: relative;
+    inset: auto;
+    flex: 0 0 100%;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: calc(4 * var(--u));
+  }
+
+  .fk-panel {
+    position: relative;
+    width: 100%;
+    height: calc(64 * var(--u));
+    transform: none;
+    clip-path: none;
+    overflow: hidden;
+    transition: height 0.5s var(--ease-out);
+  }
+
+  .fk-panel[data-slot='0'] {
+    height: calc(430 * var(--u));
+  }
+
+  .fk-panel[data-slot='1'] {
+    order: 1;
+    transform: none;
+  }
+
+  .fk-panel[data-slot='2'] {
+    order: 2;
+    transform: none;
+  }
+
+  .fk-panel[data-slot='3'] {
+    order: 3;
+    transform: none;
+  }
+
+  .fk-panel[data-slot='4'] {
+    order: 4;
+    transform: none;
+  }
+
+  .fk-panel:not([data-slot='0']) {
+    clip-path: none;
+  }
+
+  .fk-strip {
+    display: none;
+  }
+
+  .fk-num,
+  .fk-panel[data-slot='0'] .fk-num {
+    left: auto;
+    right: calc(16 * var(--u));
+    top: auto;
+    bottom: calc(8 * var(--u));
+    width: auto;
+    font-size: calc(32 * var(--u));
+    line-height: calc(40 * var(--u));
+    transform: none;
+  }
+
+  .fk-head {
+    left: calc(16 * var(--u));
+    top: calc(16 * var(--u));
+    font-size: calc(32 * var(--u));
+    line-height: calc(38 * var(--u));
+    white-space: normal;
+  }
+
+  .fk-head--title {
+    top: calc(36 * var(--u));
+  }
+
+  .fk-accent--title {
+    left: calc(16 * var(--u));
+    top: calc(16 * var(--u));
+  }
+
+  .fk-body {
+    left: calc(16 * var(--u));
+    bottom: calc(52 * var(--u));
+    width: calc(100% - 32 * var(--u));
+    gap: calc(10 * var(--u));
+  }
+
+  .fk-text {
+    font-size: calc(15 * var(--u));
+    line-height: calc(20 * var(--u));
+    text-shadow: 0 0 calc(8 * var(--u)) rgb(0 0 0 / 0.6);
+  }
+
+  .fk .arrow {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  .fk .arrow--next {
+    margin-left: auto;
+  }
+
+  .fk > .section-bar {
+    margin-top: 0;
+  }
+}
