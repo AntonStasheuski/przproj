@@ -1,0 +1,5 @@
+.not-found__main {
+  position: absolute;
+  left: calc(45 * var(--u));
+  top: calc(400 * var(--u));
+}

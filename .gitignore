@@ -1,0 +1,7 @@
+node_modules
+dist
+figma/ref
+figma/screens
+qa/out
+.playwright-mcp
+figma/assets-src

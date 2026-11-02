@@ -1,0 +1,50 @@
+/*
+  Design tokens taken from Figma «Dyplom» (see SPEC.md §1).
+  Sizes are in design pixels of the 1512×982 frame: write calc(N * var(--u)).
+*/
+:root {
+  /* colors */
+  --c-bg: #17171b;
+  --c-bg-light: #f4f4fa;
+  --c-white: #fff;
+  --c-black: #000;
+  --c-gray: #8a92a0;
+  --c-red: #dc0000;
+  --c-star: #f5c829;
+
+  /* fonts */
+  --f-ui: 'Murecho', system-ui, sans-serif;
+  --f-head: 'Rubik', system-ui, sans-serif;
+  --f-text: 'Cambay', system-ui, sans-serif;
+  --f-display: 'Playfair Display', Georgia, serif;
+  --f-script: 'Caveat', cursive;
+  --f-poster: 'Spectral SC', Georgia, serif;
+  --f-quote: 'Syne', system-ui, sans-serif;
+
+  /* scale: 1 design px. Screens fit the viewport; long pages follow width. */
+  --frame-w: 1512;
+  --frame-h: 982;
+  --u-width: calc(100vw / var(--frame-w));
+  --u-fit: min(100vw / var(--frame-w), 100svh / var(--frame-h));
+  --u: var(--u-width);
+
+  /* motion */
+  --ease-out: cubic-bezier(0, 0, 0.58, 1);
+  --t-hover: 0.3s;
+  --t-color: 0.15s;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    /* mobile: a 390-wide design column scaled to the viewport */
+    --u-width: calc(100vw / 390);
+    --u-fit: var(--u-width);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --t-hover: 0s;
+    --t-color: 0s;
+  }
+}

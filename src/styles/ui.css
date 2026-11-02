@@ -1,0 +1,320 @@
+/* Shared components: header, arrows, go back, section bar, plus. Geometry in design px (× --u). */
+
+.site-header {
+  position: absolute;
+  inset: 0 0 auto;
+  height: calc(100 * var(--u));
+  z-index: 10;
+  view-transition-name: site-header;
+}
+
+.site-logo {
+  position: absolute;
+  left: calc(45 * var(--u));
+  top: calc(42 * var(--u));
+  width: calc(218 * var(--u));
+  height: calc(35 * var(--u));
+}
+
+.site-logo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.site-logo__hover {
+  opacity: 0;
+  transition: opacity var(--t-color) linear;
+}
+
+.site-logo:hover .site-logo__hover {
+  opacity: 1;
+}
+
+.site-brand,
+.site-nav__link {
+  font-family: var(--f-ui);
+  font-weight: 700;
+  font-size: calc(24 * var(--u));
+  line-height: calc(35 * var(--u));
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--c-white);
+}
+
+.site-brand {
+  position: absolute;
+  left: calc(45 * var(--u));
+  top: calc(45 * var(--u));
+}
+
+.site-nav {
+  position: absolute;
+  left: calc(998 * var(--u));
+  top: calc(45 * var(--u));
+  --line-x: 0px;
+}
+
+.site-nav__list {
+  display: flex;
+  gap: calc(55 * var(--u));
+}
+
+.site-nav__link {
+  display: block;
+}
+
+.site-nav__line {
+  position: absolute;
+  left: 0;
+  top: calc(38.5 * var(--u));
+  width: calc(101 * var(--u));
+  height: calc(3 * var(--u));
+  border-radius: calc(1.5 * var(--u));
+  background: var(--c-white);
+  transform: translateX(var(--line-x)) scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--t-hover) var(--ease-out);
+  view-transition-name: nav-line;
+}
+
+.site-nav.has-line .site-nav__line {
+  transform: translateX(var(--line-x)) scaleX(1);
+}
+
+.site-nav.no-anim .site-nav__line {
+  transition: none;
+}
+
+/* round arrow buttons 71×71 */
+.arrow {
+  position: absolute;
+  width: calc(71 * var(--u));
+  height: calc(71 * var(--u));
+  border-radius: 50%;
+  color: var(--c-white);
+  transition: color var(--t-color) linear;
+}
+
+.arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.arrow:hover,
+.arrow[aria-disabled='true'] {
+  color: var(--c-gray);
+}
+
+.arrow[hidden] {
+  display: none;
+}
+
+/* «go back» 181×46 */
+.goback {
+  position: absolute;
+  display: block;
+  width: calc(181.4 * var(--u));
+  height: calc(46 * var(--u));
+  color: var(--c-white);
+  transition: color var(--t-color) linear;
+}
+
+.goback:hover {
+  color: var(--c-gray);
+}
+
+.goback svg {
+  position: absolute;
+  left: calc(-2 * var(--u));
+  top: calc(12.5 * var(--u));
+  width: calc(29.2 * var(--u));
+  height: calc(22.2 * var(--u));
+}
+
+.goback span {
+  position: absolute;
+  left: calc(48.6 * var(--u));
+  top: 0;
+  font-family: var(--f-ui);
+  font-weight: 700;
+  font-size: calc(31.543 * var(--u));
+  line-height: calc(46 * var(--u));
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* bottom band with the section name */
+.section-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(828 * var(--u));
+  height: calc(154 * var(--u));
+  border-top: calc(2 * var(--u)) solid var(--c-white);
+}
+
+.section-bar__title {
+  position: absolute;
+  left: calc(25 * var(--u));
+  top: calc(39 * var(--u));
+  font-family: var(--f-head);
+  font-weight: 700;
+  font-size: calc(58 * var(--u));
+  line-height: calc(69 * var(--u));
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.section-bar__back {
+  left: calc(1243 * var(--u));
+  top: calc(48 * var(--u));
+}
+
+/* «+» 35×35 */
+.plus {
+  position: absolute;
+  width: calc(35.19 * var(--u));
+  height: calc(35.19 * var(--u));
+  color: var(--c-white);
+  transition: color var(--t-color) linear;
+}
+
+.plus svg {
+  width: 100%;
+  height: 100%;
+}
+
+.plus:hover,
+.plus[aria-current='true'] {
+  color: var(--c-gray);
+}
+
+/* accent bar 54×15 above headings, rule 598 under them */
+.accent {
+  display: block;
+  width: calc(54 * var(--u));
+  height: calc(15 * var(--u));
+  background: currentColor;
+}
+
+.heading {
+  font-family: var(--f-head);
+  font-weight: 700;
+  font-size: calc(58 * var(--u));
+  line-height: calc(69 * var(--u));
+  text-transform: uppercase;
+}
+
+.body-text {
+  font-family: var(--f-text);
+  font-size: calc(25 * var(--u));
+  line-height: calc(30 * var(--u));
+}
+
+@media (max-width: 1023px) {
+  .site-header {
+    position: relative;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: calc(12 * var(--u));
+    padding: calc(16 * var(--u));
+  }
+
+  .site-logo,
+  .site-brand {
+    position: relative;
+    left: auto;
+    top: auto;
+  }
+
+  .site-logo {
+    width: calc(140 * var(--u));
+    height: calc(22.5 * var(--u));
+  }
+
+  .site-brand {
+    font-size: calc(16 * var(--u));
+    line-height: calc(24 * var(--u));
+  }
+
+  .site-nav {
+    position: relative;
+    left: auto;
+    top: auto;
+  }
+
+  .site-nav__list {
+    gap: calc(16 * var(--u));
+  }
+
+  .site-nav__link {
+    font-size: calc(15 * var(--u));
+    line-height: calc(24 * var(--u));
+  }
+
+  .site-nav__line {
+    top: calc(26 * var(--u));
+    width: calc(40 * var(--u));
+    height: calc(2 * var(--u));
+  }
+
+  .arrow {
+    position: relative;
+    width: calc(48 * var(--u));
+    height: calc(48 * var(--u));
+  }
+
+  .section-bar {
+    position: relative;
+    top: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: calc(20 * var(--u)) calc(16 * var(--u));
+    border-top-width: 1px;
+  }
+
+  .section-bar__title {
+    position: static;
+    font-size: calc(32 * var(--u));
+    line-height: 1.2;
+  }
+
+  .goback,
+  .section-bar__back {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: calc(120 * var(--u));
+    height: calc(30 * var(--u));
+  }
+
+  .goback svg {
+    top: calc(8 * var(--u));
+    left: 0;
+    width: calc(19 * var(--u));
+    height: calc(14.5 * var(--u));
+  }
+
+  .goback span {
+    left: calc(30 * var(--u));
+    font-size: calc(20 * var(--u));
+    line-height: calc(30 * var(--u));
+  }
+
+  .heading {
+    font-size: calc(32 * var(--u));
+    line-height: 1.15;
+  }
+
+  .body-text {
+    font-size: calc(17 * var(--u));
+    line-height: calc(25 * var(--u));
+  }
+}
