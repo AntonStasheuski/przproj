@@ -1,0 +1,705 @@
+/*
+  Home page (Figma 1:2, 1512×8171). Every section is a box of the frame's height with its
+  content placed absolutely in design px (× --u); see figma/inventory/home.md.
+*/
+.home {
+  --c-card: #232328; /* hover card of Przyjaciele (Rectangle 31) */
+  --t-dissolve: 1.25s;
+}
+
+/* ---------- section scaffold ---------- */
+.hs {
+  position: relative;
+  height: calc(var(--h) * var(--u));
+  overflow: hidden;
+  background: var(--c-bg);
+  color: var(--c-white);
+}
+
+.hs--light {
+  background: var(--c-bg-light);
+  color: var(--c-black);
+}
+
+.hs__in {
+  position: absolute;
+  inset: 0;
+}
+
+.hs__in > * {
+  position: absolute;
+}
+
+.hs__in.is-pending {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.home-ui {
+  font-family: var(--f-ui);
+  font-weight: 700;
+  font-size: calc(24 * var(--u));
+  line-height: calc(35 * var(--u));
+  text-transform: uppercase;
+}
+
+.home-rule {
+  height: calc(2 * var(--u));
+  background: currentColor;
+}
+
+.home h3 {
+  margin: 0;
+}
+
+.home dl,
+.home dd {
+  margin: 0;
+}
+
+:where(.home) picture,
+:where(.home) picture img {
+  width: 100%;
+  height: 100%;
+}
+
+:where(.home) picture img {
+  object-fit: cover;
+}
+
+/* ---------- hero 0–861 ---------- */
+.hero {
+  --h: 861;
+}
+
+.hero__logo {
+  left: calc(270 * var(--u));
+  top: calc(274 * var(--u));
+  width: calc(972 * var(--u));
+  height: calc(156 * var(--u));
+}
+
+.hero__logo img {
+  width: 100%;
+  height: 100%;
+}
+
+.hero__lead {
+  left: calc(367 * var(--u));
+  top: calc(499 * var(--u));
+  width: calc(777 * var(--u));
+  text-align: center;
+}
+
+.hero__author,
+.hero__year {
+  top: calc(801 * var(--u));
+  white-space: nowrap;
+}
+
+.hero__author {
+  left: calc(45 * var(--u));
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  transition: color var(--t-color) linear;
+}
+
+.hero__author:hover {
+  color: var(--c-gray);
+}
+
+.hero__year {
+  left: calc(1409 * var(--u));
+}
+
+/* ---------- O projekcie 861–1843 ---------- */
+.about {
+  --h: 982;
+}
+
+.about__accent {
+  left: calc(45 * var(--u));
+  top: calc(143 * var(--u));
+}
+
+.about__title {
+  left: calc(45 * var(--u));
+  top: calc(169 * var(--u));
+  white-space: nowrap;
+}
+
+.about__line {
+  left: calc(45 * var(--u));
+  top: calc(453 * var(--u));
+  width: calc(598 * var(--u));
+}
+
+.about__text {
+  left: calc(45 * var(--u));
+  top: calc(479 * var(--u));
+  width: calc(631 * var(--u));
+}
+
+.about__figure {
+  left: calc(766 * var(--u));
+  top: calc(79.5 * var(--u));
+  right: 0;
+  bottom: 0;
+}
+
+.about__capline {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(329 * var(--u));
+  height: calc(5 * var(--u));
+  background: currentColor;
+}
+
+.about__caption {
+  position: absolute;
+  text-transform: none;
+  left: calc(4 * var(--u));
+  top: calc(13.5 * var(--u));
+  white-space: nowrap;
+}
+
+.about__photo {
+  position: absolute;
+  left: calc(4 * var(--u));
+  top: calc(137.5 * var(--u));
+  width: calc(742 * var(--u));
+  height: calc(765 * var(--u));
+}
+
+/* ---------- Do czego służy projekt 1843–2825 ---------- */
+.goals {
+  --h: 982;
+}
+
+.goals__title {
+  left: calc(341 * var(--u));
+  top: calc(55 * var(--u));
+  white-space: nowrap;
+}
+
+.goals__list {
+  left: calc(24 * var(--u));
+  top: calc(186 * var(--u));
+  display: grid;
+  grid-template-columns: repeat(3, calc(488 * var(--u)));
+}
+
+.goals__item {
+  position: relative;
+  height: calc(740 * var(--u));
+}
+
+.goals__img {
+  display: block;
+  width: calc(488 * var(--u));
+  height: calc(510 * var(--u));
+}
+
+.goals__label,
+.goals__text {
+  position: absolute;
+  left: 0;
+}
+
+.goals__item:first-child .goals__label,
+.goals__item:first-child .goals__text {
+  left: calc(3 * var(--u));
+}
+
+.goals__label {
+  top: calc(535.77 * var(--u));
+}
+
+.goals__text {
+  top: calc(595 * var(--u));
+  width: calc(408 * var(--u));
+}
+
+.goals__autograph {
+  left: calc(1027 * var(--u));
+  top: calc(649 * var(--u));
+  font-family: var(--f-script);
+  font-weight: 700;
+  font-size: calc(22 * var(--u));
+  line-height: calc(28 * var(--u));
+  white-space: nowrap;
+}
+
+/* ---------- section selector (Component 182) 2825–3807 ---------- */
+.sel {
+  --h: 982;
+}
+
+.sel__row {
+  left: calc(24 * var(--u));
+  top: 0;
+  display: flex;
+}
+
+.sel__col {
+  --w: 394;
+  position: relative;
+  flex: none;
+  width: calc(var(--w) * var(--u));
+  height: calc(982 * var(--u));
+}
+
+.sel__col.is-open {
+  --w: 584;
+}
+
+.sel__col + .sel__col {
+  margin-left: calc(46 * var(--u));
+}
+
+/* divider between columns: 2px, y 45…937 */
+.sel__col + .sel__col::before {
+  content: '';
+  position: absolute;
+  left: calc(-24 * var(--u));
+  top: calc(45 * var(--u));
+  width: calc(2 * var(--u));
+  height: calc(892 * var(--u));
+  background: currentColor;
+}
+
+.sel__media,
+.sel__toggle {
+  position: absolute;
+  left: 0;
+  bottom: calc(184 * var(--u));
+  width: 100%;
+  aspect-ratio: 584 / 674;
+}
+
+.sel__media {
+  display: block;
+  color: var(--c-white);
+}
+
+.sel__title {
+  position: absolute;
+  /* centred on y 491 of the frame = 307 above the image bottom, also while the column resizes */
+  left: 50%;
+  bottom: calc(307 * var(--u));
+  transform: translate(-50%, 50%);
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: calc(96 * var(--u));
+  line-height: calc(128 * var(--u));
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: color var(--t-color) linear;
+}
+
+.sel__col.is-open .sel__title {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sel__media:hover .sel__title {
+  color: var(--c-gray);
+}
+
+.sel__label {
+  position: absolute;
+  left: 0;
+  top: calc(823 * var(--u));
+  font-family: var(--f-ui);
+  font-weight: 700;
+  font-size: calc(24 * var(--u));
+  line-height: calc(35 * var(--u));
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* hover underline like the header menu (Component 2/5/6) */
+.sel__label::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: calc(37.5 * var(--u));
+  width: calc(101 * var(--u));
+  height: calc(3 * var(--u));
+  border-radius: calc(1.5 * var(--u));
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--t-hover) var(--ease-out);
+}
+
+.sel__label:hover::after,
+.sel__label:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* ---------- bio (Component 31) 3807–4789 ---------- */
+.bio {
+  --h: 982;
+}
+
+.bio__rule {
+  top: calc(37.5 * var(--u));
+  height: calc(5 * var(--u));
+  background: currentColor;
+}
+
+.bio__rule--a {
+  left: calc(45 * var(--u));
+  width: calc(308 * var(--u));
+}
+
+.bio__rule--b {
+  left: calc(472 * var(--u));
+  width: calc(1016 * var(--u));
+}
+
+.bio__chev {
+  top: calc(63.4 * var(--u));
+  width: calc(23 * var(--u));
+  height: calc(17 * var(--u));
+  color: var(--c-black);
+  transition: color var(--t-color) linear;
+}
+
+.bio__chev svg {
+  width: 100%;
+  height: 100%;
+}
+
+.bio__chev.arrow--prev {
+  left: calc(495.4 * var(--u));
+}
+
+.bio__chev.arrow--next {
+  left: calc(540.4 * var(--u));
+}
+
+.bio__chev:hover,
+.bio__chev[aria-disabled='true'] {
+  color: var(--c-gray);
+}
+
+.bio__caption {
+  text-transform: none;
+  left: calc(45 * var(--u));
+  top: calc(65 * var(--u));
+  white-space: nowrap;
+}
+
+.bio__accent {
+  left: calc(45 * var(--u));
+  top: calc(342 * var(--u));
+}
+
+.bio__title {
+  left: calc(45 * var(--u));
+  top: calc(368 * var(--u));
+  white-space: nowrap;
+}
+
+.bio__years {
+  left: calc(45 * var(--u));
+  top: calc(531 * var(--u));
+}
+
+.bio__line {
+  left: calc(45 * var(--u));
+  top: calc(583 * var(--u));
+  width: calc(598 * var(--u));
+}
+
+.bio__slide {
+  inset: 0;
+  opacity: 0;
+  pointer-events: none; /* full-size layer must not cover the chevrons */
+}
+
+.bio__slide.is-active {
+  opacity: 1;
+}
+
+.bio__slide.is-active > * {
+  pointer-events: auto;
+}
+
+.bio__text {
+  position: absolute;
+  left: calc(45 * var(--u));
+  top: calc(609 * var(--u));
+  width: calc(587 * var(--u));
+}
+
+.bio__text--wide {
+  width: calc(598 * var(--u));
+}
+
+.bio__photo {
+  position: absolute;
+  left: calc(688 * var(--u));
+  top: calc(59 * var(--u));
+  width: calc(825 * var(--u));
+  height: calc(880 * var(--u));
+}
+
+/* ---------- museum 4789–5771 ---------- */
+.museum {
+  --h: 982;
+}
+
+.museum__link {
+  left: 0;
+  top: calc(59 * var(--u));
+  width: calc(811 * var(--u));
+  height: calc(923 * var(--u));
+}
+
+.museum__img,
+.museum__cursor {
+  position: absolute;
+}
+
+.museum__img {
+  inset: 0;
+}
+
+.museum__cursor {
+  left: calc(713 * var(--u));
+  top: calc(825 * var(--u));
+  width: calc(78 * var(--u));
+  height: calc(78 * var(--u));
+}
+
+.museum__img--hover,
+.museum__cursor--hover {
+  opacity: 0;
+  transition: opacity var(--t-hover) var(--ease-out);
+}
+
+.museum__link:hover .museum__img--hover,
+.museum__link:hover .museum__cursor--hover,
+.museum__link:focus-visible .museum__img--hover,
+.museum__link:focus-visible .museum__cursor--hover {
+  opacity: 1;
+}
+
+.museum__accent {
+  left: calc(1414 * var(--u));
+  top: calc(68 * var(--u));
+}
+
+.museum__title {
+  right: calc(44 * var(--u));
+  top: calc(94 * var(--u));
+  text-align: right;
+  white-space: nowrap;
+}
+
+.museum__address {
+  left: calc(919 * var(--u));
+  top: calc(188 * var(--u));
+  white-space: nowrap;
+}
+
+.museum__line {
+  left: calc(870 * var(--u));
+  top: calc(240 * var(--u));
+  width: calc(598 * var(--u));
+}
+
+.museum__hours {
+  left: calc(917 * var(--u));
+  top: calc(344 * var(--u));
+  width: calc(492 * var(--u));
+}
+
+.museum__hours-label {
+  font-family: var(--f-text);
+  font-size: calc(25 * var(--u));
+  line-height: calc(41 * var(--u));
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.museum__hours-value {
+  position: absolute;
+  left: calc(336 * var(--u));
+  top: 0;
+  white-space: nowrap;
+}
+
+.museum__info-title {
+  left: calc(870 * var(--u));
+  top: calc(516 * var(--u));
+  white-space: nowrap;
+}
+
+.museum__info {
+  left: calc(870 * var(--u));
+  top: calc(585 * var(--u));
+  width: calc(587 * var(--u));
+}
+
+/* ---------- Przyjaciele 5771–7560 ---------- */
+.friends {
+  --h: 1789;
+}
+
+.friends__accent {
+  left: calc(72 * var(--u));
+  top: calc(106 * var(--u));
+}
+
+.friends__title {
+  left: calc(72 * var(--u));
+  top: calc(132 * var(--u));
+  white-space: nowrap;
+}
+
+.friends__years {
+  left: calc(72 * var(--u));
+  top: calc(226 * var(--u));
+}
+
+.friends__line {
+  left: calc(72 * var(--u));
+  top: calc(278 * var(--u));
+  width: calc(598 * var(--u));
+}
+
+.friends__grid {
+  left: calc(45 * var(--u));
+  top: calc(344 * var(--u));
+  display: grid;
+  grid-template-columns: repeat(3, calc(474 * var(--u)));
+  grid-auto-rows: calc(688 * var(--u));
+}
+
+.friend {
+  position: relative;
+  overflow: hidden;
+}
+
+.friend__img {
+  position: absolute;
+  inset: 0;
+}
+
+.friend__name {
+  position: absolute;
+  left: calc(14 * var(--u));
+  top: calc(640 * var(--u));
+  white-space: nowrap;
+}
+
+.friend__card {
+  position: absolute;
+  inset: 0;
+  background: var(--c-card);
+  opacity: 0;
+  transition: opacity var(--t-dissolve) var(--ease-out);
+}
+
+.friend:hover .friend__card,
+.friend:focus-visible .friend__card {
+  opacity: 1;
+}
+
+.friend__card > * {
+  position: absolute;
+  left: calc(19 * var(--u));
+}
+
+.friend__accent {
+  top: calc(45 * var(--u));
+}
+
+.friend__card-name {
+  top: calc(76.5 * var(--u));
+  white-space: nowrap;
+}
+
+.friend__line {
+  top: calc(127 * var(--u));
+  width: calc(282 * var(--u));
+}
+
+.friend__text {
+  top: calc(231 * var(--u));
+  width: calc(437 * var(--u));
+}
+
+/* ---------- footer 7560–8171 ---------- */
+.home-footer {
+  --h: 611;
+}
+
+.home-footer__line {
+  left: 0;
+  top: calc(34.5 * var(--u));
+  width: calc(1212 * var(--u));
+}
+
+.home-footer__title {
+  left: calc(48.56 * var(--u));
+  top: calc(109 * var(--u));
+  font-family: var(--f-head);
+  font-weight: 700;
+  font-size: calc(36.482 * var(--u));
+  line-height: calc(34.202 * var(--u));
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.home-footer__text {
+  left: calc(45 * var(--u));
+  top: calc(187 * var(--u));
+  width: calc(864 * var(--u));
+  font-family: var(--f-text);
+  font-size: calc(27.362 * var(--u));
+  line-height: calc(34.202 * var(--u));
+}
+
+.home-footer__mail {
+  left: calc(45 * var(--u));
+  top: calc(510 * var(--u));
+  text-transform: none;
+  transition: color var(--t-color) linear;
+}
+
+.home-footer__mail:hover {
+  color: var(--c-gray);
+}
+
+.home-footer__social {
+  left: calc(1122 * var(--u));
+  top: calc(484 * var(--u));
+  display: flex;
+  gap: calc(25 * var(--u));
+}
+
+.home-footer__icon {
+  display: block;
+  height: calc(67 * var(--u));
+}
+
+.home-footer__icon img {
+  width: auto;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home {
+    --t-dissolve: 0s;
+  }
+}
