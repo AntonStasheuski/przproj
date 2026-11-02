@@ -50,6 +50,17 @@ for (const sel of clicks) {
   await page.waitForTimeout(300);
 }
 await page.evaluate(() => document.fonts.ready);
+if (full) {
+  // scroll through long pages so lazy images load, then wait for every image to finish
+  await page.evaluate(async () => {
+    for (let y = 0; y < document.documentElement.scrollHeight; y += 600) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 60));
+    }
+    window.scrollTo(0, 0);
+    await Promise.all(Array.from(document.images).map((i) => (i.complete ? null : i.decode().catch(() => null))));
+  });
+}
 await page.waitForTimeout(Number(opt('--wait', '600')));
 let shot = await page.screenshot({ fullPage: full });
 await browser.close();
