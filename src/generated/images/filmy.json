@@ -1,0 +1,222 @@
+{
+ "filmy/fakty/andrijesz": {
+  "w": 403,
+  "h": 570
+ },
+ "filmy/fakty/aszik-kerib": {
+  "w": 403,
+  "h": 570
+ },
+ "filmy/fakty/cienie": {
+  "w": 403,
+  "h": 570
+ },
+ "filmy/fakty/kijowskie-freski": {
+  "w": 403,
+  "h": 570
+ },
+ "filmy/fakty/legenda": {
+  "w": 403,
+  "h": 570
+ },
+ "filmy/fakty/sajat-nowa": {
+  "w": 403,
+  "h": 569
+ },
+ "filmy/film/foto1-andrijesz": {
+  "w": 705,
+  "h": 408
+ },
+ "filmy/film/foto1-aszik-kerib": {
+  "w": 705,
+  "h": 408
+ },
+ "filmy/film/foto1-cienie": {
+  "w": 705,
+  "h": 408
+ },
+ "filmy/film/foto1-kijowskie-freski": {
+  "w": 705,
+  "h": 408
+ },
+ "filmy/film/foto1-legenda": {
+  "w": 705,
+  "h": 408
+ },
+ "filmy/film/foto1-sajat-nowa": {
+  "w": 705,
+  "h": 408
+ },
+ "filmy/film/foto2-andrijesz": {
+  "w": 706,
+  "h": 405
+ },
+ "filmy/film/foto2-aszik-kerib": {
+  "w": 706,
+  "h": 405
+ },
+ "filmy/film/foto2-cienie": {
+  "w": 706,
+  "h": 405
+ },
+ "filmy/film/foto2-kijowskie-freski": {
+  "w": 706,
+  "h": 405
+ },
+ "filmy/film/foto2-legenda": {
+  "w": 706,
+  "h": 405
+ },
+ "filmy/film/foto2-sajat-nowa": {
+  "w": 706,
+  "h": 405
+ },
+ "filmy/film/foto3-andrijesz": {
+  "w": 707,
+  "h": 407
+ },
+ "filmy/film/foto3-aszik-kerib": {
+  "w": 705,
+  "h": 407
+ },
+ "filmy/film/foto3-cienie": {
+  "w": 707,
+  "h": 407
+ },
+ "filmy/film/foto3-kijowskie-freski": {
+  "w": 705,
+  "h": 407
+ },
+ "filmy/film/foto3-legenda": {
+  "w": 705,
+  "h": 407
+ },
+ "filmy/film/foto3-sajat-nowa": {
+  "w": 705,
+  "h": 407
+ },
+ "filmy/film/foto4-andrijesz": {
+  "w": 706,
+  "h": 402
+ },
+ "filmy/film/foto4-aszik-kerib": {
+  "w": 706,
+  "h": 402
+ },
+ "filmy/film/foto4-cienie": {
+  "w": 706,
+  "h": 402
+ },
+ "filmy/film/foto4-kijowskie-freski": {
+  "w": 706,
+  "h": 402
+ },
+ "filmy/film/foto4-legenda": {
+  "w": 706,
+  "h": 402
+ },
+ "filmy/film/foto4-sajat-nowa": {
+  "w": 706,
+  "h": 402
+ },
+ "filmy/film/kadr-andrijesz": {
+  "w": 1422,
+  "h": 786
+ },
+ "filmy/film/kadr-aszik-kerib": {
+  "w": 1422,
+  "h": 786
+ },
+ "filmy/film/kadr-cienie": {
+  "w": 1422,
+  "h": 786
+ },
+ "filmy/film/kadr-kijowskie-freski": {
+  "w": 1421,
+  "h": 786
+ },
+ "filmy/film/kadr-legenda": {
+  "w": 1422,
+  "h": 786
+ },
+ "filmy/film/kadr-sajat-nowa": {
+  "w": 1422,
+  "h": 786
+ },
+ "filmy/film/mini-andrijesz": {
+  "w": 212,
+  "h": 299
+ },
+ "filmy/film/mini-aszik-kerib": {
+  "w": 212,
+  "h": 299
+ },
+ "filmy/film/mini-cienie": {
+  "w": 212,
+  "h": 299
+ },
+ "filmy/film/mini-kijowskie-freski": {
+  "w": 212,
+  "h": 299
+ },
+ "filmy/film/mini-legenda": {
+  "w": 212,
+  "h": 299
+ },
+ "filmy/film/mini-sajat-nowa": {
+  "w": 212,
+  "h": 299
+ },
+ "filmy/film/poster-andrijesz": {
+  "w": 549,
+  "h": 806
+ },
+ "filmy/film/poster-aszik-kerib": {
+  "w": 549,
+  "h": 806
+ },
+ "filmy/film/poster-cienie": {
+  "w": 549,
+  "h": 806
+ },
+ "filmy/film/poster-kijowskie-freski": {
+  "w": 549,
+  "h": 806
+ },
+ "filmy/film/poster-legenda": {
+  "w": 549,
+  "h": 806
+ },
+ "filmy/film/poster-sajat-nowa": {
+  "w": 549,
+  "h": 806
+ },
+ "filmy/plakaty/andrijesz": {
+  "w": 403,
+  "h": 570
+ },
+ "filmy/plakaty/aszik-kerib": {
+  "w": 403,
+  "h": 570
+ },
+ "filmy/plakaty/cienie": {
+  "w": 403,
+  "h": 570
+ },
+ "filmy/plakaty/kijowskie-freski": {
+  "w": 403,
+  "h": 570
+ },
+ "filmy/plakaty/legenda": {
+  "w": 403,
+  "h": 570
+ },
+ "filmy/plakaty/sajat-nowa": {
+  "w": 403,
+  "h": 569
+ },
+ "filmy/start/photo": {
+  "w": 691,
+  "h": 740
+ }
+}
