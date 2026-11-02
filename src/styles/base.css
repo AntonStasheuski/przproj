@@ -129,6 +129,7 @@ button[aria-disabled='true'] {
 
 @media (max-width: 1023px) {
   .screen {
+    width: 100%;
     height: auto;
     min-height: 100svh;
     overflow: visible;

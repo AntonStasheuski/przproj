@@ -29,8 +29,13 @@ const BASE = process.env.BASE_URL ?? 'http://localhost:5173';
 const out = join(ROOT, 'qa/out');
 await mkdir(out, { recursive: true });
 
-const refBuf = await readFile(join(ROOT, 'figma/ref/all', `${ref}.png`));
-const refMeta = await sharp(refBuf).metadata();
+// references wider than the frame (overflowing content in Figma) are cropped to the frame width
+let refBuf = await readFile(join(ROOT, 'figma/ref/all', `${ref}.png`));
+let refMeta = await sharp(refBuf).metadata();
+if (refMeta.width > 1513) {
+  refBuf = await sharp(refBuf).extract({ left: 0, top: 0, width: 1512, height: refMeta.height }).png().toBuffer();
+  refMeta = await sharp(refBuf).metadata();
+}
 const scale = Number(opt('--scale', '1'));
 const full = args.includes('--full');
 
