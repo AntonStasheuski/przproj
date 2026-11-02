@@ -29,11 +29,11 @@ const BASE = process.env.BASE_URL ?? 'http://localhost:5173';
 const out = join(ROOT, 'qa/out');
 await mkdir(out, { recursive: true });
 
-// references wider than the frame (overflowing content in Figma) are cropped to the frame width
+// references wider than the frame: Figma exports overflowing content on the left, the frame is the right-most 1512px
 let refBuf = await readFile(join(ROOT, 'figma/ref/all', `${ref}.png`));
 let refMeta = await sharp(refBuf).metadata();
 if (refMeta.width > 1513) {
-  refBuf = await sharp(refBuf).extract({ left: 0, top: 0, width: 1512, height: refMeta.height }).png().toBuffer();
+  refBuf = await sharp(refBuf).extract({ left: refMeta.width - 1512, top: 0, width: 1512, height: refMeta.height }).png().toBuffer();
   refMeta = await sharp(refBuf).metadata();
 }
 const scale = Number(opt('--scale', '1'));
