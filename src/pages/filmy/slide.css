@@ -1,6 +1,0 @@
-/* the shared strip position animated by Slide (registered so it interpolates as a number) */
-@property --pos {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
