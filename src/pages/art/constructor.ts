@@ -2,7 +2,7 @@ import type { PageFactory } from '../../router';
 import { html, toElement, vars, type Raw } from '../../lib/html';
 import { picture, size } from '../../lib/img';
 import { Disposer } from '../../lib/dispose';
-import { Stepper } from '../../lib/stepper';
+import { Stepper, isTyping } from '../../lib/stepper';
 import { play, SPRING_SLOW } from '../../lib/motion';
 import { arrowButton, goBack, header, mountHeader, plusButton } from '../../ui/ui';
 import notFound from '../not-found';
@@ -222,9 +222,7 @@ const page: PageFactory = (ctx) => {
       plusButtons.forEach((btn, i) => disposer.listen(btn, 'click', () => openFact(i)));
       disposer.listen(document, 'keydown', (e) => {
         const k = e as KeyboardEvent;
-        const target = k.target as HTMLElement | null;
-        if (k.defaultPrevented || k.altKey || k.ctrlKey || k.metaKey) return;
-        if (target && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName))) return;
+        if (k.defaultPrevented || k.repeat || k.altKey || k.ctrlKey || k.metaKey || isTyping(k.target)) return;
         if (k.key === 'ArrowRight') forward();
         else if (k.key === 'ArrowLeft') back();
         else if (k.key === 'Escape' && fact !== null) openFact(null);

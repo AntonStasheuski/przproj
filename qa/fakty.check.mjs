@@ -54,17 +54,19 @@ await settle(page);
 ok(krok(page) === '1', 'loop: 5 -> 1');
 await page.keyboard.press('ArrowLeft');
 await settle(page);
-ok(krok(page) === '5' && (await order(page)) === '05 01 02 03 04', 'ArrowLeft on step 1 loops to 5');
+ok(krok(page) === '1', 'ArrowLeft on step 1 does nothing (back is hidden, SPEC §3.3)');
+await page.click('.arrow--next');
+await settle(page);
 await page.click('.arrow--prev');
 await settle(page);
-ok(krok(page) === '4', 'arrow prev -> krok 4');
+ok(krok(page) === '1', 'arrow prev 2 -> krok 1');
 
 // rapid clicks must not leave the DOM in a broken state
 await page.click('.arrow--next', { delay: 0 });
 await page.click('.arrow--next');
 await page.click('.arrow--next');
 await settle(page);
-ok(krok(page) === '2' && (await order(page)) === '02 03 04 05 01' && (await page.$$('.fk-ghost')).length === 0, `rapid clicks end in a clean state (krok ${krok(page)})`);
+ok(krok(page) === '4' && (await order(page)) === '04 05 01 02 03' && (await page.$$('.fk-ghost')).length === 0, `rapid clicks end in a clean state (krok ${krok(page)})`);
 
 // ?krok=N renders immediately, without animation
 await page.goto(`${BASE}/filmy/fakty/aszik-kerib?krok=3`, { waitUntil: 'networkidle' });

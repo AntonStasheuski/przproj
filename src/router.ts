@@ -41,6 +41,8 @@ export class Router {
   private readonly routes: Compiled[];
   private current: Page | null = null;
   private token = 0;
+  /** pathname + search of the rendered page: hash-only history entries (anchors) do not re-render */
+  private shown = '';
 
   constructor(
     private readonly root: HTMLElement,
@@ -50,7 +52,9 @@ export class Router {
     this.routes = routes.map(compile);
     history.scrollRestoration = 'manual';
     document.addEventListener('click', this.onClick);
-    window.addEventListener('popstate', () => void this.render(true));
+    window.addEventListener('popstate', () => {
+      if (location.pathname + location.search !== this.shown) void this.render(true);
+    });
   }
 
   start(): Promise<void> {
@@ -93,6 +97,7 @@ export class Router {
   private async render(isPop: boolean): Promise<void> {
     const token = ++this.token;
     const url = new URL(location.href);
+    this.shown = url.pathname + url.search;
     const { route, params } = this.match(url.pathname);
     const mod = await route();
     const page = await mod.default({ params, url, navigate: this.navigate });

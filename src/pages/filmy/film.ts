@@ -106,8 +106,10 @@ const page: PageFactory = (ctx) => {
         ${track('poster', posters)}
         ${track('info', info)}
         <nav aria-label="Następne filmy">${track('mini', minis)}</nav>
-        ${arrowButton('next', 'Następny film', 'film__arrow film__arrow--next')}
-        ${arrowButton('prev', 'Poprzedni film', 'film__arrow film__arrow--prev')}
+        <div class="film__arrows">
+          ${arrowButton('prev', 'Poprzedni film', 'film__arrow film__arrow--prev')}
+          ${arrowButton('next', 'Następny film', 'film__arrow film__arrow--next')}
+        </div>
 
         <h2 class="heading film__h film__h--band">film</h2>
         ${track('band', bands)}
@@ -128,7 +130,7 @@ const page: PageFactory = (ctx) => {
   const back = q<HTMLAnchorElement>('.section-bar__back');
   const allSlots = Array.from(el.querySelectorAll<HTMLElement>('.film-slot'));
 
-  const slide = new Glide(el, '--pos', start);
+  const slide = new Glide(el.querySelectorAll<HTMLElement>('.film-track'), '--pos', start);
   /** visual slot of the big strips (0…SLOTS-1); film = vis mod N */
   let vis = start;
 
@@ -157,7 +159,7 @@ const page: PageFactory = (ctx) => {
     if (target > SLOTS - 1 || target < 0) {
       // jump to the identical clone slot first, then animate
       const shift = target < 0 ? N : -N;
-      slide.set(slide.current() + shift);
+      slide.set(slide.pos + shift);
       target += shift;
     }
     vis = target;
@@ -179,7 +181,8 @@ const page: PageFactory = (ctx) => {
   const onMini = (e: Event) => {
     const a = (e.target as Element).closest<HTMLAnchorElement>('.film-mini');
     const s = a?.closest<HTMLElement>('.film-slot');
-    if (!a || !s || (e as MouseEvent).button !== 0 || (e as MouseEvent).metaKey || (e as MouseEvent).ctrlKey) return;
+    const m = e as MouseEvent;
+    if (!a || !s || m.button !== 0 || m.metaKey || m.ctrlKey || m.shiftKey || m.altKey) return;
     e.preventDefault();
     stepper.go(Number(s.dataset.film), 1);
   };

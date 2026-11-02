@@ -122,6 +122,10 @@
   filter: grayscale(1);
 }
 
+.film__arrows {
+  display: contents;
+}
+
 .film__arrow--next {
   left: calc(1396 * var(--u));
   top: calc(320 * var(--u));
@@ -408,17 +412,12 @@
     grid-template-columns: calc(96 * var(--u)) 1fr;
   }
 
-  /* arrows in a row under the metadata */
-  .film__arrow--next,
-  .film__arrow--prev {
+  /* arrows in a row under the metadata: back, then forward */
+  .film__arrows {
+    display: flex;
     order: 2;
+    gap: calc(12 * var(--u));
     margin-top: calc(20 * var(--u));
-  }
-
-  .film__arrow--prev {
-    order: 2;
-    margin-top: calc(-48 * var(--u));
-    margin-left: calc(60 * var(--u));
   }
 
   .film main > nav {

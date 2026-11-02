@@ -11,6 +11,7 @@
   --c-gray: #8a92a0;
   --c-red: #dc0000;
   --c-star: #f5c829;
+  --c-dim: rgb(35 35 40 / 0.8); /* panel dimming, multiply (Fakty LoTS 3) */
 
   /* fonts */
   --f-ui: 'Murecho', system-ui, sans-serif;

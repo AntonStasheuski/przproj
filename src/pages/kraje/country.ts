@@ -3,7 +3,7 @@ import { html, toElement, vars } from '../../lib/html';
 import { picture, size } from '../../lib/img';
 import { Disposer } from '../../lib/dispose';
 import { Stepper } from '../../lib/stepper';
-import { arrowButton, bindArrows, goBack, header, mountHeader } from '../../ui/ui';
+import { arrowButton, bindArrows, goBack, header, hideKeepingFocus, mountHeader } from '../../ui/ui';
 import { Glide } from '../../lib/glide';
 import notFound from '../not-found';
 import { COPY_X, COUNTRIES, SLIDE_W } from './data';
@@ -57,7 +57,7 @@ const page: PageFactory = (ctx) => {
     </div>
   `);
 
-  const glide = new Glide(el, '--pos', stepper.index);
+  const glide = new Glide(el.querySelectorAll<HTMLElement>('.kraj-strip'), '--pos', stepper.index);
   const slides = Array.from(el.querySelectorAll<HTMLElement>('.kraj-slide'));
   const prev = el.querySelector<HTMLElement>('.arrow--prev');
   const live = el.querySelector<HTMLElement>('[data-live]');
@@ -65,7 +65,7 @@ const page: PageFactory = (ctx) => {
 
   // the first slide has no «back» arrow (as in the design); off-screen slides are neither focusable nor read out
   const sync = () => {
-    if (prev) prev.hidden = !stepper.canPrev();
+    if (prev) hideKeepingFocus(prev, !stepper.canPrev(), el.querySelector('.arrow--next'));
     slides.forEach((s, i) => {
       s.inert = !mobile.matches && i !== stepper.index;
     });

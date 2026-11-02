@@ -4,18 +4,22 @@ import { SPRING_SLOW, reducedMotion } from './motion';
 type Spring = { type: 'spring'; stiffness: number; damping: number; mass: number };
 
 /**
- * Animates a unitless position written to one CSS custom property. Several strips read the same
- * variable, so they move in sync. Default spring is Figma's SLOW preset; film pages pass GENTLE.
+ * Animates a unitless position written to one CSS custom property on each strip element, so several
+ * strips move in sync. The property is registered as non-inherited (base.css), so a frame restyles
+ * only the strips, not their subtrees. Default spring is Figma's SLOW preset; film pages pass GENTLE.
  */
 export class Glide {
   pos: number;
   private ctl: { stop: () => void } | null = null;
 
+  private readonly hosts: HTMLElement[];
+
   constructor(
-    private readonly host: HTMLElement,
+    host: HTMLElement | Iterable<HTMLElement>,
     private readonly prop: string,
     initial = 0,
   ) {
+    this.hosts = host instanceof HTMLElement ? [host] : Array.from(host);
     this.pos = initial;
     this.write();
   }
@@ -25,11 +29,6 @@ export class Glide {
     this.ctl = null;
     this.pos = v;
     this.write();
-  }
-
-  /** current position, also mid-animation */
-  current(): number {
-    return this.pos;
   }
 
   to(target: number, done?: () => void, spring: Spring = SPRING_SLOW): void {
@@ -60,6 +59,7 @@ export class Glide {
   }
 
   private write(): void {
-    this.host.style.setProperty(this.prop, String(this.pos));
+    const v = String(this.pos);
+    for (const h of this.hosts) h.style.setProperty(this.prop, v);
   }
 }

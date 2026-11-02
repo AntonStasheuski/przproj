@@ -70,8 +70,10 @@ export const mountBio = (root: ParentNode, disposer: Disposer): void => {
   disposer.add(bindArrows(box, stepper));
 
   disposer.listen(box, 'keydown', (e) => {
-    const k = (e as KeyboardEvent).key;
+    const ev = e as KeyboardEvent;
+    const k = ev.key;
     if (k !== 'ArrowLeft' && k !== 'ArrowRight') return;
+    if (ev.repeat || ev.altKey || ev.ctrlKey || ev.metaKey) return;
     e.preventDefault();
     if (k === 'ArrowLeft') stepper.prev();
     else stepper.next();

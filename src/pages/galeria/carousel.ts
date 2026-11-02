@@ -54,7 +54,7 @@ const page: PageFactory = () => {
     </div>
   `);
 
-  const glide = new Glide(el, '--page', stepper.index);
+  const glide = new Glide(el.querySelectorAll<HTMLElement>('.gal-strip'), '--page', stepper.index);
   const cards = Array.from(el.querySelectorAll<HTMLElement>('.gal-card'));
   const live = el.querySelector<HTMLElement>('[data-live]');
   const mobile = window.matchMedia('(max-width: 1023px)');

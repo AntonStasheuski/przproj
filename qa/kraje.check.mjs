@@ -26,7 +26,7 @@ const open = async (ctx, path, w = 1512, h = 982) => {
   return page;
 };
 const url = (p) => new URL(p.url()).pathname + new URL(p.url()).search;
-const pos = (p) => p.evaluate(() => Number(document.querySelector('.kraj').style.getPropertyValue('--pos')));
+const pos = (p) => p.evaluate(() => Number(document.querySelector('.kraj-strip').style.getPropertyValue('--pos')));
 const settle = (p) => p.waitForTimeout(2800);
 const ctx = await browser.newContext();
 

@@ -1,4 +1,4 @@
-import type { PageFactory } from '../../router';
+import { SITE_TITLE, type PageFactory } from '../../router';
 import { html, toElement } from '../../lib/html';
 import { picture } from '../../lib/img';
 import { Disposer } from '../../lib/dispose';
@@ -15,12 +15,6 @@ const SLIDES = 2 * N;
 const THUMBS = SLIDES + 2;
 const VISIBLE_THUMBS = 3;
 
-/** "back" is disabled on the first work (as in the design) while "next" loops 6 → 1 */
-class WorkStepper extends Stepper {
-  override canPrev(): boolean {
-    return this.index > 0;
-  }
-}
 
 const page: PageFactory = (ctx) => {
   const n = Number(ctx.params.n);
@@ -30,10 +24,11 @@ const page: PageFactory = (ctx) => {
   /** unbounded position (works advance forward past 6, then fold back) */
   let target = n - 1;
 
-  const stepper = new WorkStepper({
+  // "back" is disabled on the first work (as in the design) while "next" loops 6 → 1
+  const stepper = new Stepper({
     count: N,
     initial: n - 1,
-    loop: true,
+    loop: 'forward',
     param: null,
     onChange: (to, from, dir) => {
       target += dir === 1 ? (to - from + N) % N || N : -1;
@@ -86,7 +81,7 @@ const page: PageFactory = (ctx) => {
     </div>
   `);
 
-  const glide = new Glide(el, '--pos', target);
+  const glide = new Glide(el.querySelectorAll<HTMLElement>('.gal-photo__strip, .gal-text__strip, .gal-thumbs__strip'), '--pos', target);
   const q = <T extends Element>(s: string) => Array.from(el.querySelectorAll<T>(s));
   const slides = q<HTMLElement>('.gal-work');
   const blocks = q<HTMLElement>('.gal-block');
@@ -112,7 +107,7 @@ const page: PageFactory = (ctx) => {
     backLinks.forEach((a) => a.setAttribute('href', backHref(i)));
     if (heading) heading.textContent = work(i).title;
     if (live) live.textContent = `Praca ${i + 1} z ${N}: ${work(i).title}`;
-    document.title = `${work(i).title} — PRŻ PROJ`;
+    document.title = `${work(i).title} — ${SITE_TITLE}`;
     history.replaceState(history.state, '', `/galeria/${i + 1}`);
   };
 

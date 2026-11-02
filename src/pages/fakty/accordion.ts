@@ -4,7 +4,7 @@ import { picture } from '../../lib/img';
 import { Disposer } from '../../lib/dispose';
 import { Stepper, type Direction } from '../../lib/stepper';
 import { SPRING_SLOW, play, reducedMotion } from '../../lib/motion';
-import { arrowButton, bindArrows, goBack, header, mountHeader } from '../../ui/ui';
+import { arrowButton, bindArrows, goBack, header, hideKeepingFocus, mountHeader } from '../../ui/ui';
 import notFound from '../not-found';
 import { filmBySlug, type Film } from './data';
 import './fakty.css';
@@ -64,7 +64,7 @@ const page: PageFactory = (ctx) => {
   let running: { cancel: () => void }[] = [];
   let ghosts: HTMLElement[] = [];
 
-  const stepper = new Stepper({ count: COUNT, loop: true, onChange: (to, from, dir) => move(to, from, dir) });
+  const stepper = new Stepper({ count: COUNT, loop: 'forward', onChange: (to, from, dir) => move(to, from, dir) });
 
   const el = toElement(html`
     <div class="screen fk">
@@ -97,7 +97,7 @@ const page: PageFactory = (ctx) => {
       p.dataset.slot = String(s);
       p.inert = s !== 0;
     });
-    if (prev) prev.hidden = active === 0;
+    if (prev) hideKeepingFocus(prev, active === 0, el.querySelector('.arrow--next'));
     if (live) live.textContent = `Krok ${active + 1} z ${COUNT}`;
   };
 

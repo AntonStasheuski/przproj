@@ -30,7 +30,7 @@ const open = async (ctx, path, w = 1512, h = 982) => {
 const url = (p) => new URL(p.url()).pathname + new URL(p.url()).search;
 const dis = (p, dir) => p.locator(`.arrow--${dir}`).getAttribute('aria-disabled');
 const settle = (p) => p.waitForTimeout(2800);
-const posOf = (p) => p.evaluate(() => Number(document.querySelector('.galeria').style.getPropertyValue('--pos')));
+const posOf = (p) => p.evaluate(() => Number(document.querySelector('.gal-photo__strip').style.getPropertyValue('--pos')));
 
 const ctx = await browser.newContext();
 
@@ -54,7 +54,7 @@ await p.keyboard.press('ArrowRight');
 await settle(p);
 ok(url(p) === '/galeria?krok=2', 'ArrowRight -> page 2');
 await p.reload({ waitUntil: 'networkidle' });
-ok(await p.evaluate(() => document.querySelector('.galeria').style.getPropertyValue('--page') === '1'), '?krok=2 renders page 2 immediately');
+ok(await p.evaluate(() => document.querySelector('.gal-strip').style.getPropertyValue('--page') === '1'), '?krok=2 renders page 2 immediately');
 // hover grayscale
 await p.hover('.gal-card:nth-child(4) a');
 await p.waitForTimeout(500);
@@ -67,7 +67,7 @@ ok((await p.locator('.goback').getAttribute('href')) === '/galeria?krok=2', 'wor
 await p.click('.goback');
 await p.waitForURL('**/galeria?krok=2');
 await p.waitForSelector('.gal-window');
-ok(await p.evaluate(() => document.querySelector('.galeria').style.getPropertyValue('--page') === '1'), 'back lands on page 2');
+ok(await p.evaluate(() => document.querySelector('.gal-strip').style.getPropertyValue('--page') === '1'), 'back lands on page 2');
 await p.click('.goback');
 await p.waitForURL((u) => u.pathname === '/');
 ok(url(p) === '/', 'carousel go back -> /');

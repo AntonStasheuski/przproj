@@ -90,6 +90,11 @@ button[aria-disabled='true'] {
   outline-offset: 4px;
 }
 
+/* <main tabindex=-1> receives focus after navigation only to move the reading position */
+main:focus-visible {
+  outline: none;
+}
+
 .on-light :focus-visible {
   outline-color: var(--c-black);
 }
@@ -164,6 +169,19 @@ button[aria-disabled='true'] {
   ::view-transition-new(*) {
     animation: none;
   }
+}
+
+/* strip positions animated by lib/glide.ts: non-inherited, so each frame restyles only the strip */
+@property --pos {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --page {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
 }
 
 /* page transitions (View Transitions API; see router.ts) */

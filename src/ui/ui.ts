@@ -103,6 +103,12 @@ export const bindArrows = (root: ParentNode, stepper: Stepper, selector = ''): (
   };
 };
 
+/** Hides/shows an arrow; if it had focus, focus moves to `fallback` instead of falling to <body>. */
+export const hideKeepingFocus = (btn: HTMLElement, hidden: boolean, fallback: HTMLElement | null): void => {
+  if (hidden && document.activeElement === btn) fallback?.focus();
+  btn.hidden = hidden;
+};
+
 export const goBack = (href: string, extraClass = ''): Raw => html`
   <a class="goback ${extraClass}" href="${href}">${raw(gobackArrow)}<span>go back</span></a>
 `;

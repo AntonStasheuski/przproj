@@ -7,13 +7,14 @@ export type Direction = 1 | -1;
 export interface StepperOptions {
   count: number;
   initial?: number;
-  loop?: boolean;
+  /** true: both ends wrap; 'forward': next wraps last → first, prev stops at the first state */
+  loop?: boolean | 'forward';
   /** query parameter that mirrors the state (1-based); null disables URL sync */
   param?: string | null;
   onChange: (to: number, from: number, dir: Direction) => void;
 }
 
-const isTyping = (t: EventTarget | null): boolean =>
+export const isTyping = (t: EventTarget | null): boolean =>
   t instanceof HTMLElement && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
 
 export class Stepper {
@@ -23,7 +24,8 @@ export class Stepper {
 
   constructor(options: StepperOptions) {
     this.opts = { loop: false, param: 'krok', ...options };
-    const fromUrl = this.opts.param ? Number(new URL(location.href).searchParams.get(this.opts.param)) - 1 : NaN;
+    const params = new URL(location.href).searchParams;
+    const fromUrl = this.opts.param && params.has(this.opts.param) ? Number(params.get(this.opts.param)) - 1 : NaN;
     const start = Number.isInteger(fromUrl) ? fromUrl : (options.initial ?? 0);
     this.index = this.clamp(start);
   }
@@ -33,11 +35,11 @@ export class Stepper {
   }
 
   canPrev(): boolean {
-    return this.opts.loop || this.index > 0;
+    return this.opts.loop === true || this.index > 0;
   }
 
   canNext(): boolean {
-    return this.opts.loop || this.index < this.opts.count - 1;
+    return this.opts.loop !== false || this.index < this.opts.count - 1;
   }
 
   next(): void {
@@ -50,7 +52,7 @@ export class Stepper {
 
   go(target: number, dir?: Direction): void {
     const n = this.opts.count;
-    const to = this.opts.loop ? ((target % n) + n) % n : this.clamp(target);
+    const to = this.opts.loop !== false ? ((target % n) + n) % n : this.clamp(target);
     if (to === this.index) return;
     const from = this.index;
     this.index = to;
@@ -69,7 +71,8 @@ export class Stepper {
   /** ←/→ on the document while this screen is mounted. Returns an unbind function. */
   bindKeys(): () => void {
     const onKey = (e: KeyboardEvent) => {
-      if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || isTyping(e.target)) return;
+      // auto-repeat is ignored: holding a key would otherwise spam history.replaceState
+      if (e.defaultPrevented || e.repeat || e.altKey || e.ctrlKey || e.metaKey || isTyping(e.target)) return;
       if (e.key === 'ArrowRight') {
         e.preventDefault();
         this.next();

@@ -40,7 +40,7 @@ export const toElement = <T extends Element = HTMLElement>(markup: Raw): T => {
 /** Converts text with \n into <br> separated escaped lines (for hard breaks kept from the design). */
 export const lines = (text: string): Raw => raw(text.split('\n').map(escape).join('<br>'));
 
-/** Inline style helper for design-pixel geometry: px({ left: 59, top: 136 }) → "--x:59;--y:136" */
+/** CSS custom properties as an inline style: vars({ x: 59, y: 136 }) → "--x:59;--y:136" */
 export const vars = (o: Record<string, number | string>): string =>
   Object.entries(o)
     .map(([k, v]) => `--${k}:${v}`)
