@@ -188,8 +188,8 @@ const page: PageFactory = (ctx) => {
 
   const syncFactUrl = () => {
     const url = new URL(location.href);
-    if (fact === null) url.searchParams.delete('fakt');
-    else {
+    url.searchParams.delete('fakt');
+    if (fact !== null) {
       url.searchParams.set('krok', String(finalState + 1));
       url.searchParams.set('fakt', String(fact + 1));
     }

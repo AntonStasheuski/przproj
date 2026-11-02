@@ -103,6 +103,8 @@
 .art-poster__plus .plus {
   position: static;
   display: block;
+  width: calc(35.19 * var(--pu));
+  height: calc(35.19 * var(--pu));
 }
 
 .art-poster__plus .plus[aria-current='true'] {
@@ -172,6 +174,7 @@
   height: calc(600 * var(--u));
   overflow: hidden;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .art-body__track,
@@ -347,6 +350,13 @@
     order: 5;
     width: 100%;
     height: auto;
+  }
+
+  /* the column follows the current slide, not the tallest one */
+  .art-body__slide[inert],
+  .art-body__fact[inert] {
+    height: 0;
+    overflow: hidden;
   }
 
   .art-intro,
