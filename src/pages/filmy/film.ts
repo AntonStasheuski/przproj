@@ -1,4 +1,4 @@
-import type { PageFactory } from '../../router';
+import { SITE_TITLE, type PageFactory } from '../../router';
 import { html, raw, toElement, vars, type Raw } from '../../lib/html';
 import { picture } from '../../lib/img';
 import { Disposer } from '../../lib/dispose';
@@ -9,7 +9,7 @@ import playIcon from '../../icons/play.svg?raw';
 import playHoverIcon from '../../icons/play-hover.svg?raw';
 import notFound from '../not-found';
 import { FILMS, META_LABELS, findFilm, plainTitle, plakatyHref, type Film } from './data';
-import { Slide } from './slide';
+import { Glide } from '../../lib/glide';
 import './film.css';
 
 /**
@@ -128,7 +128,7 @@ const page: PageFactory = (ctx) => {
   const back = q<HTMLAnchorElement>('.section-bar__back');
   const allSlots = Array.from(el.querySelectorAll<HTMLElement>('.film-slot'));
 
-  const slide = new Slide(el, start);
+  const slide = new Glide(el, '--pos', start);
   /** visual slot of the big strips (0…SLOTS-1); film = vis mod N */
   let vis = start;
 
@@ -162,13 +162,13 @@ const page: PageFactory = (ctx) => {
     }
     vis = target;
     syncSlots();
-    slide.to(target, SPRING_GENTLE, settle);
+    slide.to(target, settle, SPRING_GENTLE);
 
     const f = film(to);
     const url = new URL(location.href);
     url.pathname = `/filmy/${f.slug}`;
     history.replaceState(history.state, '', url);
-    document.title = `${plainTitle(f)} — PRŻ PROJ`;
+    document.title = `${plainTitle(f)} — ${SITE_TITLE}`;
     if (heading) heading.textContent = plainTitle(f);
     if (status) status.textContent = `Film ${to + 1} z ${N}: ${plainTitle(f)}`;
     if (back) back.href = plakatyHref(to);

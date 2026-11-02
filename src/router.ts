@@ -35,7 +35,7 @@ const compile = (r: Route): Compiled => {
   return { ...r, re: new RegExp(`^${pattern}/?$`), keys };
 };
 
-const SITE_TITLE = 'PRŻ PROJ';
+export const SITE_TITLE = 'PRŻ PROJ';
 
 export class Router {
   private readonly routes: Compiled[];

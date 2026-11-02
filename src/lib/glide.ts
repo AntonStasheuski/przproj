@@ -1,9 +1,11 @@
 import { animate } from 'motion';
 import { SPRING_SLOW, reducedMotion } from './motion';
 
+type Spring = { type: 'spring'; stiffness: number; damping: number; mass: number };
+
 /**
  * Animates a unitless position written to one CSS custom property. Several strips read the same
- * variable, so they move in sync; the spring is Figma's SLOW preset (no overshoot).
+ * variable, so they move in sync. Default spring is Figma's SLOW preset; film pages pass GENTLE.
  */
 export class Glide {
   pos: number;
@@ -25,7 +27,12 @@ export class Glide {
     this.write();
   }
 
-  to(target: number, done?: () => void): void {
+  /** current position, also mid-animation */
+  current(): number {
+    return this.pos;
+  }
+
+  to(target: number, done?: () => void, spring: Spring = SPRING_SLOW): void {
     this.ctl?.stop();
     if (reducedMotion()) {
       this.set(target);
@@ -33,7 +40,7 @@ export class Glide {
       return;
     }
     this.ctl = animate(this.pos, target, {
-      ...SPRING_SLOW,
+      ...spring,
       onUpdate: (v: number) => {
         this.pos = v;
         this.write();

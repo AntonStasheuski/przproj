@@ -58,7 +58,11 @@ if (full) {
       await new Promise((r) => setTimeout(r, 60));
     }
     window.scrollTo(0, 0);
-    await Promise.all(Array.from(document.images).map((i) => (i.complete ? null : i.decode().catch(() => null))));
+    // images in clipped horizontal strips never enter the viewport: force them, and never wait forever
+    const imgs = Array.from(document.images);
+    imgs.forEach((i) => (i.loading = 'eager'));
+    const settle = Promise.all(imgs.map((i) => (i.complete ? null : i.decode().catch(() => null))));
+    await Promise.race([settle, new Promise((r) => setTimeout(r, 8000))]);
   });
 }
 await page.waitForTimeout(Number(opt('--wait', '600')));
@@ -70,8 +74,13 @@ const H = Math.round(refMeta.height);
 let pipe = sharp(shot);
 if (scale !== 1) pipe = pipe.resize(Math.round(1512 * scale));
 shot = await pipe.png().toBuffer();
-// align canvas sizes (crop/pad to the reference)
-const site = await sharp(shot).extend({ right: Math.max(0, W - (await sharp(shot).metadata()).width), bottom: Math.max(0, H - (await sharp(shot).metadata()).height), background: '#ff00ff' }).extract({ left: 0, top: 0, width: W, height: H }).ensureAlpha().raw().toBuffer();
+// pad to the reference size, then crop (two passes: sharp runs extract before extend in one pipeline)
+const shotMeta = await sharp(shot).metadata();
+const padded = await sharp(shot)
+  .extend({ right: Math.max(0, W - shotMeta.width), bottom: Math.max(0, H - shotMeta.height), background: '#ff00ff' })
+  .png()
+  .toBuffer();
+const site = await sharp(padded).extract({ left: 0, top: 0, width: W, height: H }).ensureAlpha().raw().toBuffer();
 const refRaw = await sharp(refBuf).ensureAlpha().raw().toBuffer();
 const diff = new PNG({ width: W, height: H });
 const n = pixelmatch(refRaw, site, diff.data, W, H, { threshold: 0.12, includeAA: false });
