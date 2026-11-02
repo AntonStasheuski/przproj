@@ -149,11 +149,11 @@ const card = page.locator('.friend').nth(1);
 await card.scrollIntoViewIfNeeded();
 await page.waitForTimeout(900);
 await card.hover();
-await page.waitForTimeout(300);
+await page.waitForTimeout(90);
 const cMid = await card.locator('.friend__card').evaluate((e) => Number(getComputedStyle(e).opacity));
-await page.waitForTimeout(1200);
+await page.waitForTimeout(400);
 const cEnd = await card.locator('.friend__card').evaluate((e) => Number(getComputedStyle(e).opacity));
-check('friends: hover card dissolves in over ~1.25s', cMid > 0 && cMid < 1 && cEnd === 1, `${cMid.toFixed(2)} → ${cEnd}`);
+check('friends: hover card fades in within ~0.3s (SPEC §7a)', cMid > 0 && cMid < 1 && cEnd === 1, `${cMid.toFixed(2)} → ${cEnd}`);
 await page.mouse.move(5, 5);
 await page.waitForTimeout(1400);
 const textFits = await page.$$eval('.friend', (fs) =>
@@ -189,7 +189,7 @@ const left = await page.$$eval('[data-reveal] > .hs__in', (e) => e.filter((x) =>
 check('reveal: all sections visible after scrolling', left === 0, String(left));
 const cls = await page.evaluate(() => window.__cls);
 const h1 = await page.evaluate(() => document.documentElement.scrollHeight);
-check('reveal: CLS = 0, page height stable (8171)', cls === 0 && h0 === h1 && near(h1, 8171), `cls ${cls}, ${h0}→${h1}`);
+check('reveal: CLS = 0, page height stable (8171 − 861 + viewport-high hero)', cls === 0 && h0 === h1 && near(h1, 8171 - 861 + 982), `cls ${cls}, ${h0}→${h1}`);
 
 check('console: no errors', errors.length === 0, errors.join(' | '));
 // expected navigations: goBack from /filmy (+1) and the explicit goto before the reveal test (+1)

@@ -95,7 +95,7 @@ po różnych liniach, wycieczki audio, podczas których można coś zobaczyć i 
 na stronie muzeum.`),
 };
 
-/** Przyjaciele: photo card; hover variant (DISSOLVE SLOW 1.25 s) is a text card. */
+/** Przyjaciele: photo card; hover variant is a text card (Figma DISSOLVE SLOW 1.25 s; the site uses 0.3 s, SPEC §7a). */
 export const FRIENDS = {
   title: 'Przyjaciele',
   years: '(1924-1990)',

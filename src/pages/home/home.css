@@ -4,7 +4,9 @@
 */
 .home {
   --c-card: #232328; /* hover card of Przyjaciele (Rectangle 31) */
-  --t-dissolve: 1.25s;
+  /* Figma: DISSOLVE SLOW 1.25s — felt laggy live, so the card shows faster (SPEC §7a) */
+  --t-dissolve-in: 0.3s;
+  --t-dissolve-out: 0.2s;
 }
 
 /* ---------- section scaffold ---------- */
@@ -68,13 +70,20 @@
 }
 
 /* ---------- hero 0–861 ---------- */
+/*
+  The hero fills the window (Figma: 861px with the next section peeking in — on wide, short windows a
+  width-scaled hero pushed its bottom row below the fold, and the peeking strip read as a glitch; SPEC §7a).
+  Logo + lead stay centred (as in Figma, their block centre is the hero centre), the bottom row is
+  pinned to the bottom edge with the Figma margin.
+*/
 .hero {
   --h: 861;
+  height: max(calc(640 * var(--u)), 100svh);
 }
 
 .hero__logo {
   left: calc(270 * var(--u));
-  top: calc(274 * var(--u));
+  top: calc(50% - 156.5 * var(--u));
   width: calc(972 * var(--u));
   height: calc(156 * var(--u));
 }
@@ -86,14 +95,15 @@
 
 .hero__lead {
   left: calc(367 * var(--u));
-  top: calc(499 * var(--u));
+  top: calc(50% + 68.5 * var(--u));
   width: calc(777 * var(--u));
   text-align: center;
 }
 
 .hero__author,
-.hero__year {
-  top: calc(801 * var(--u));
+.hero__year,
+.hero__scroll {
+  bottom: calc(25 * var(--u));
   white-space: nowrap;
 }
 
@@ -112,16 +122,14 @@
   left: calc(1409 * var(--u));
 }
 
-/* scroll cue (not in Figma — proposed: the hero alone does not show that the page continues) */
+/* scroll cue «PRZEWIŃ ↓» in the bottom row (not in Figma — proposed: the page did not show it continues) */
 .hero__scroll {
-  position: absolute;
-  left: calc(734 * var(--u));
-  top: calc(790 * var(--u));
-  display: grid;
-  place-items: center;
-  width: calc(44 * var(--u));
-  height: calc(56 * var(--u));
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: calc(12 * var(--u));
   color: var(--c-white);
+  transform: translateX(-50%);
   transition: color var(--t-color) var(--ease-soft);
 }
 
@@ -130,9 +138,10 @@
 }
 
 .hero__scroll svg {
-  width: calc(29.2 * var(--u));
-  height: calc(22.2 * var(--u));
-  transform: rotate(-90deg);
+  width: calc(22.2 * var(--u));
+  height: calc(29.2 * var(--u));
+  /* sit on the cap height of the uppercase label, not the line box centre */
+  margin-top: calc(-6 * var(--u));
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -151,11 +160,11 @@
 
 @keyframes hero-cue {
   from {
-    transform: rotate(-90deg) translateX(0);
+    transform: translateY(calc(-3 * var(--u)));
   }
 
   to {
-    transform: rotate(-90deg) translateX(calc(-8 * var(--u)));
+    transform: translateY(calc(3 * var(--u)));
   }
 }
 
@@ -661,12 +670,13 @@
   inset: 0;
   background: var(--c-card);
   opacity: 0;
-  transition: opacity var(--t-dissolve) var(--ease-out);
+  transition: opacity var(--t-dissolve-out) var(--ease-soft);
 }
 
 .friend:hover .friend__card,
 .friend:focus .friend__card {
   opacity: 1;
+  transition-duration: var(--t-dissolve-in);
 }
 
 .friend__card > * {
@@ -754,7 +764,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .home {
-    --t-dissolve: 0s;
+    --t-dissolve-in: 0s;
+    --t-dissolve-out: 0s;
   }
 }
 

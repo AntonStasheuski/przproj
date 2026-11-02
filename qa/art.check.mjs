@@ -45,7 +45,7 @@ await p.hover('.art-start__card >> nth=1');
 await p.waitForTimeout(500);
 const filter = await p.locator('.art-start__poster img >> nth=1').evaluate((n) => getComputedStyle(n).filter);
 ok(filter.includes('grayscale(1)'), `hover poster → grayscale (${filter})`);
-ok((await p.locator('.goback').count()) === 0, 'start: no Go back (as in 29:88)');
+ok((await p.locator('.goback').getAttribute('href')) === '/', 'start: Go back → / (SPEC §7a: every page but home has it)');
 for (const slug of ['aszik-kerib', 'cienie-zapomnianych-przodkow', 'sajat-nowa']) {
   await p.click(`a[href="/art-project/${slug}"]`);
   await p.waitForURL(`**/art-project/${slug}`);
