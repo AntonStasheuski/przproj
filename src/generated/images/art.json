@@ -1,0 +1,162 @@
+{
+ "art/ak/fact-1": {
+  "w": 545,
+  "h": 771
+ },
+ "art/ak/fact-2": {
+  "w": 545,
+  "h": 771
+ },
+ "art/ak/fact-3": {
+  "w": 545,
+  "h": 771
+ },
+ "art/ak/fact-4": {
+  "w": 545,
+  "h": 771
+ },
+ "art/ak/layer-1": {
+  "w": 545,
+  "h": 771
+ },
+ "art/ak/layer-2": {
+  "w": 545,
+  "h": 771
+ },
+ "art/ak/layer-3": {
+  "w": 545,
+  "h": 771
+ },
+ "art/ak/layer-4": {
+  "w": 545,
+  "h": 771
+ },
+ "art/ak/layer-5": {
+  "w": 545,
+  "h": 781
+ },
+ "art/ak/layer-6": {
+  "w": 545,
+  "h": 780
+ },
+ "art/ak/layer-7": {
+  "w": 545,
+  "h": 771
+ },
+ "art/ak/layer-8": {
+  "w": 545,
+  "h": 771
+ },
+ "art/ak/title-texture": {
+  "w": 331,
+  "h": 171
+ },
+ "art/czp/fact-1": {
+  "w": 545,
+  "h": 771
+ },
+ "art/czp/fact-2": {
+  "w": 545,
+  "h": 771
+ },
+ "art/czp/fact-3": {
+  "w": 545,
+  "h": 771
+ },
+ "art/czp/fact-4": {
+  "w": 545,
+  "h": 771
+ },
+ "art/czp/layer-1": {
+  "w": 545,
+  "h": 771
+ },
+ "art/czp/layer-2": {
+  "w": 545,
+  "h": 771
+ },
+ "art/czp/layer-3": {
+  "w": 545,
+  "h": 772
+ },
+ "art/czp/layer-4": {
+  "w": 547,
+  "h": 238
+ },
+ "art/czp/layer-5": {
+  "w": 545,
+  "h": 771
+ },
+ "art/czp/layer-6": {
+  "w": 545,
+  "h": 771
+ },
+ "art/czp/layer-7": {
+  "w": 545,
+  "h": 771
+ },
+ "art/czp/layer-8": {
+  "w": 545,
+  "h": 771
+ },
+ "art/sn/fact-1": {
+  "w": 545,
+  "h": 771
+ },
+ "art/sn/fact-2": {
+  "w": 545,
+  "h": 771
+ },
+ "art/sn/fact-3": {
+  "w": 545,
+  "h": 771
+ },
+ "art/sn/fact-4": {
+  "w": 545,
+  "h": 771
+ },
+ "art/sn/layer-1": {
+  "w": 545,
+  "h": 771
+ },
+ "art/sn/layer-2": {
+  "w": 545,
+  "h": 771
+ },
+ "art/sn/layer-3": {
+  "w": 545,
+  "h": 771
+ },
+ "art/sn/layer-4": {
+  "w": 545,
+  "h": 771
+ },
+ "art/sn/layer-5": {
+  "w": 545,
+  "h": 771
+ },
+ "art/sn/layer-6": {
+  "w": 545,
+  "h": 771
+ },
+ "art/sn/layer-7": {
+  "w": 545,
+  "h": 771
+ },
+ "art/sn/layer-8": {
+  "w": 545,
+  "h": 771
+ },
+ "art/start/poster-aszik-kerib": {
+  "w": 403,
+  "h": 569
+ },
+ "art/start/poster-cienie": {
+  "w": 403,
+  "h": 569
+ },
+ "art/start/poster-sajat-nowa": {
+  "w": 403,
+  "h": 569
+ }
+}
