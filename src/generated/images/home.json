@@ -1,0 +1,82 @@
+{
+ "home/about-photo": {
+  "w": 742,
+  "h": 765
+ },
+ "home/bio-1": {
+  "w": 825,
+  "h": 880
+ },
+ "home/bio-2": {
+  "w": 825,
+  "h": 880
+ },
+ "home/bio-3": {
+  "w": 825,
+  "h": 880
+ },
+ "home/bio-4": {
+  "w": 824,
+  "h": 880
+ },
+ "home/bio-5": {
+  "w": 824,
+  "h": 880
+ },
+ "home/friend-antonioni": {
+  "w": 474,
+  "h": 688
+ },
+ "home/friend-fellini": {
+  "w": 474,
+  "h": 688
+ },
+ "home/friend-godard": {
+  "w": 474,
+  "h": 688
+ },
+ "home/friend-loran": {
+  "w": 474,
+  "h": 688
+ },
+ "home/friend-tarkowski": {
+  "w": 474,
+  "h": 688
+ },
+ "home/friend-wajda": {
+  "w": 474,
+  "h": 688
+ },
+ "home/goal-estetyka": {
+  "w": 488,
+  "h": 510
+ },
+ "home/goal-idea": {
+  "w": 488,
+  "h": 510
+ },
+ "home/goal-wiedza": {
+  "w": 488,
+  "h": 510
+ },
+ "home/museum": {
+  "w": 811,
+  "h": 923
+ },
+ "home/museum-hover": {
+  "w": 811,
+  "h": 923
+ },
+ "home/sel-art": {
+  "w": 584,
+  "h": 674
+ },
+ "home/sel-filmy": {
+  "w": 584,
+  "h": 674
+ },
+ "home/sel-galeria": {
+  "w": 584,
+  "h": 674
+ }
+}
