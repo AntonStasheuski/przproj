@@ -673,8 +673,14 @@
   transition: opacity var(--t-dissolve-out) var(--ease-soft);
 }
 
+/* the article fills the card so its children keep the card as their box; it is the keyboard target */
+.friend__in {
+  position: absolute;
+  inset: 0;
+}
+
 .friend:hover .friend__card,
-.friend:focus .friend__card {
+.friend__in:focus-visible .friend__card {
   opacity: 1;
   transition-duration: var(--t-dissolve-in);
 }

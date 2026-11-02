@@ -95,7 +95,8 @@ const markup = html`
           <ul class="friends__grid">
             ${FRIENDS.items.map(
               (f) => html`
-                <li class="friend" tabindex="0" role="group" aria-label="${f.name}">
+                <li class="friend">
+                  <article class="friend__in" tabindex="0" aria-label="${f.name}">
                   ${picture(`home/friend-${f.key}`, { className: 'friend__img', alt: '' })}
                   <p class="home-ui friend__name" aria-hidden="true">${f.name}</p>
                   <div class="friend__card">
@@ -104,6 +105,7 @@ const markup = html`
                     <span class="home-rule friend__line" aria-hidden="true"></span>
                     <p class="body-text friend__text">${f.text}</p>
                   </div>
+                  </article>
                 </li>
               `,
             )}

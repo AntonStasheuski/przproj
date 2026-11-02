@@ -228,6 +228,9 @@
 
 .art-uwaga__label {
   color: var(--c-red);
+  /* #DC0000 on the dark bg is 3.4:1 — enough only for large bold text (≥ 18.67px). Below 1400px wide the
+     scaled 20px label would drop under that size, so it never goes below it (same as Figma at 1512+). */
+  font-size: max(1em, 18.67px);
 }
 
 .art-intro--final {
