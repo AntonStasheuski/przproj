@@ -1,0 +1,140 @@
+/* /filmy — frame 191:227 */
+
+.filmy-start__title {
+  position: absolute;
+  left: calc(25 * var(--u));
+  top: calc(166 * var(--u));
+  font-family: var(--f-head);
+  font-weight: 700;
+  font-size: calc(128 * var(--u));
+  line-height: calc(152 * var(--u));
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Component 196 is placed at 0.794 of its size here (144×36.5) */
+.filmy-start__back {
+  position: absolute;
+  left: calc(511 * var(--u));
+  top: calc(249 * var(--u));
+  width: calc(144 * var(--u));
+  height: calc(36.52 * var(--u));
+}
+
+.filmy-start__back .goback {
+  left: 0;
+  top: 0;
+  transform: scale(0.79385);
+  transform-origin: 0 0;
+}
+
+.filmy-start__rule {
+  position: absolute;
+  left: 0;
+  top: calc(320 * var(--u));
+  width: calc(655 * var(--u));
+  height: calc(2 * var(--u));
+  background: var(--c-white);
+}
+
+.filmy-start__list {
+  position: absolute;
+  left: calc(45 * var(--u));
+  top: calc(407 * var(--u));
+  display: grid;
+  row-gap: calc(75 * var(--u));
+}
+
+.filmy-start__entry {
+  display: block;
+  color: var(--c-white);
+  transition: color var(--t-color) linear;
+}
+
+.filmy-start__entry:hover {
+  color: var(--c-gray);
+}
+
+.filmy-start__text {
+  display: block;
+  margin-top: calc(11 * var(--u));
+  font-family: var(--f-ui);
+  font-weight: 700;
+  font-size: calc(24 * var(--u));
+  line-height: calc(35 * var(--u));
+  text-transform: uppercase;
+  white-space: pre;
+}
+
+.filmy-start__photo {
+  position: absolute;
+  left: calc(776 * var(--u));
+  top: calc(166 * var(--u));
+  width: calc(691 * var(--u));
+  height: calc(740 * var(--u));
+}
+
+.filmy-start__photo img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1023px) {
+  .filmy-start main {
+    display: flex;
+    flex-direction: column;
+    padding: calc(24 * var(--u)) calc(16 * var(--u)) calc(40 * var(--u));
+  }
+
+  .filmy-start__title,
+  .filmy-start__back,
+  .filmy-start__rule,
+  .filmy-start__list,
+  .filmy-start__photo {
+    position: relative;
+    left: auto;
+    top: auto;
+  }
+
+  .filmy-start__title {
+    font-size: calc(72 * var(--u));
+    line-height: calc(86 * var(--u));
+  }
+
+  .filmy-start__back {
+    order: -1;
+    align-self: flex-end;
+    width: calc(120 * var(--u));
+    height: calc(30 * var(--u));
+  }
+
+  .filmy-start__back .goback {
+    transform: none;
+  }
+
+  .filmy-start__rule {
+    width: 100%;
+    height: 1px;
+    margin-bottom: calc(32 * var(--u));
+  }
+
+  .filmy-start__list {
+    row-gap: calc(32 * var(--u));
+  }
+
+  .filmy-start__text {
+    font-size: calc(16 * var(--u));
+    line-height: calc(23 * var(--u));
+    white-space: normal;
+  }
+
+  .filmy-start__photo {
+    width: 100%;
+    height: auto;
+    margin-top: calc(40 * var(--u));
+  }
+
+  .filmy-start__photo img {
+    height: auto;
+  }
+}
