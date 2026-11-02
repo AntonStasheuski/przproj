@@ -79,7 +79,7 @@
   width: calc(var(--photo-w) * var(--u));
   height: calc(var(--photo-h) * var(--u));
   /* Figma hover variant = no photo; a short crossfade (≤ 0.2 s) instead of a hard switch is proposed */
-  transition: opacity var(--t-color) linear;
+  transition: opacity var(--t-color) var(--ease-soft);
 }
 
 .country-card__shade {
@@ -114,7 +114,7 @@
   line-height: calc(24 * var(--u));
   text-align: center;
   text-transform: uppercase;
-  transition: color var(--t-color) linear;
+  transition: color var(--t-color) var(--ease-soft);
 }
 
 .country-card:hover .country-card__photo,

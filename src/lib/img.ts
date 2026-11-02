@@ -33,7 +33,7 @@ export const picture = (key: string, o: PictureOptions = {}): Raw => {
   return html`<picture class="${o.className ?? ''}"
     ><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"
     /><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"
-    /><img src="/img/${key}-1x.webp" width="${w}" height="${h}" alt="${o.alt ?? ''}"
+    /><img src="/img/${key}-1x.webp" width="${w}" height="${h}" alt="${o.alt ?? ''}" data-fade
       loading="${o.eager ? 'eager' : 'lazy'}" decoding="${o.eager ? 'sync' : 'async'}"
       ${o.eager ? html`fetchpriority="high"` : ''} /></picture>`;
 };

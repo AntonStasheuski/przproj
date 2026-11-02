@@ -15,7 +15,7 @@
 }
 
 .galeria__title a {
-  transition: color var(--t-color) linear;
+  transition: color var(--t-color) var(--ease-soft);
 }
 
 .galeria__title a:hover {

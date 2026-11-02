@@ -72,6 +72,8 @@ export class Router {
     if (!a || a.target || a.hasAttribute('download')) return;
     const url = new URL(a.href, location.href);
     if (url.origin !== location.origin) return;
+    // in-page anchors: let the browser scroll (smoothly, see base.css)
+    if (url.hash && url.pathname === location.pathname && url.search === location.search) return;
     e.preventDefault();
     this.navigate(url.pathname + url.search + url.hash);
   };
@@ -105,7 +107,11 @@ export class Router {
       this.current = page;
       document.title = page.title ? `${page.title} — ${SITE_TITLE}` : `${SITE_TITLE} — Siergiej Paradżanow`;
       const y = isPop ? Number((history.state as { scrollY?: number } | null)?.scrollY ?? 0) : 0;
-      window.scrollTo(0, y);
+      window.scrollTo({ top: y, behavior: 'instant' });
+      // images served from cache may already be decoded: show them without the fade-in
+      page.el.querySelectorAll<HTMLImageElement>('img[data-fade]').forEach((img) => {
+        if (img.complete && img.naturalWidth) img.classList.add('is-loaded');
+      });
       page.mount?.();
     };
 

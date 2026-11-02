@@ -48,7 +48,7 @@
 .filmy-start__entry {
   display: block;
   color: var(--c-white);
-  transition: color var(--t-color) linear;
+  transition: color var(--t-color) var(--ease-soft);
 }
 
 .filmy-start__entry:hover {

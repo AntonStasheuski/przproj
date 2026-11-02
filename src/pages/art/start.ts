@@ -27,7 +27,7 @@ const page: PageFactory = () => {
           })}
         </ul>
       </main>
-      ${sectionBar('Art Project', null)}
+      ${sectionBar('Art Project', '/')}
     </div>
   `);
   return {

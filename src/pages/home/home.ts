@@ -7,6 +7,7 @@ import { ABOUT, FOOTER, FRIENDS, GOALS, HERO, LINKS, MUSEUM } from './data';
 import { selector, mountSelector } from './selector';
 import { bio, mountBio } from './bio';
 import { mountReveal } from './reveal';
+import scrollArrow from '../../icons/goback-arrow.svg?raw';
 import './home.css';
 
 const newTab = raw('target="_blank" rel="noopener"');
@@ -23,10 +24,11 @@ const markup = html`
           <p class="body-text hero__lead">${HERO.lead}</p>
           <a class="home-ui hero__author" href="${LINKS.behance}" ${newTab}>${HERO.author}</a>
           <p class="home-ui hero__year">${HERO.year}</p>
+          <a class="hero__scroll" href="#o-projekcie" aria-label="Przewiń do sekcji O projekcie">${raw(scrollArrow)}</a>
         </div>
       </section>
 
-      <section class="hs hs--light on-light about" aria-labelledby="about-title" data-reveal>
+      <section class="hs hs--light on-light about" id="o-projekcie" aria-labelledby="about-title" data-reveal>
         <div class="hs__in">
           <span class="accent about__accent" aria-hidden="true"></span>
           <h2 class="heading about__title" id="about-title">${ABOUT.title}</h2>

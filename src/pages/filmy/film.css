@@ -188,7 +188,7 @@
 .film-play__icon {
   position: absolute;
   inset: 0;
-  transition: opacity var(--t-color) linear;
+  transition: opacity var(--t-color) var(--ease-soft);
 }
 
 .film-play__icon svg {

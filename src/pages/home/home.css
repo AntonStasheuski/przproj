@@ -101,7 +101,7 @@
   left: calc(45 * var(--u));
   text-decoration: underline;
   text-decoration-thickness: from-font;
-  transition: color var(--t-color) linear;
+  transition: color var(--t-color) var(--ease-soft);
 }
 
 .hero__author:hover {
@@ -110,6 +110,60 @@
 
 .hero__year {
   left: calc(1409 * var(--u));
+}
+
+/* scroll cue (not in Figma — proposed: the hero alone does not show that the page continues) */
+.hero__scroll {
+  position: absolute;
+  left: calc(734 * var(--u));
+  top: calc(790 * var(--u));
+  display: grid;
+  place-items: center;
+  width: calc(44 * var(--u));
+  height: calc(56 * var(--u));
+  color: var(--c-white);
+  transition: color var(--t-color) var(--ease-soft);
+}
+
+.hero__scroll:hover {
+  color: var(--c-gray);
+}
+
+.hero__scroll svg {
+  width: calc(29.2 * var(--u));
+  height: calc(22.2 * var(--u));
+  transform: rotate(-90deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__scroll svg {
+    animation: hero-cue 1.8s var(--ease-soft) infinite alternate;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .hero__scroll {
+      animation: hero-cue-out linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 calc(240 * var(--u));
+    }
+  }
+}
+
+@keyframes hero-cue {
+  from {
+    transform: rotate(-90deg) translateX(0);
+  }
+
+  to {
+    transform: rotate(-90deg) translateX(calc(-8 * var(--u)));
+  }
+}
+
+@keyframes hero-cue-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 /* ---------- O projekcie 861–1843 ---------- */
@@ -299,7 +353,7 @@
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: color var(--t-color) linear;
+  transition: color var(--t-color) var(--ease-soft);
 }
 
 .sel__col.is-open .sel__title {
@@ -369,7 +423,7 @@
   width: calc(23 * var(--u));
   height: calc(17 * var(--u));
   color: var(--c-black);
-  transition: color var(--t-color) linear;
+  transition: color var(--t-color) var(--ease-soft);
 }
 
 .bio__chev svg {
@@ -674,7 +728,7 @@
   left: calc(45 * var(--u));
   top: calc(510 * var(--u));
   text-transform: none;
-  transition: color var(--t-color) linear;
+  transition: color var(--t-color) var(--ease-soft);
 }
 
 .home-footer__mail:hover {
@@ -706,6 +760,11 @@
 
 /* ---------- mobile (≤1023): one column, design px of a 390-wide column (SPEC §6) ---------- */
 @media (max-width: 1023px) {
+  /* the next section is already visible on phones */
+  .hero__scroll {
+    display: none;
+  }
+
   .hs {
     height: auto;
   }

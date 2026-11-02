@@ -25,7 +25,7 @@
 
 .site-logo__hover {
   opacity: 0;
-  transition: opacity var(--t-color) linear;
+  transition: opacity var(--t-color) var(--ease-soft);
 }
 
 .site-logo:hover .site-logo__hover {
@@ -54,6 +54,7 @@
   left: calc(998 * var(--u));
   top: calc(45 * var(--u));
   --line-x: 0px;
+  --line-w: calc(101 * var(--u));
 }
 
 .site-nav__list {
@@ -67,16 +68,18 @@
 
 .site-nav__line {
   position: absolute;
-  /* 101px stroke + round caps (1.5px each side) */
-  left: calc(-1 * var(--u));
+  /* Figma draws a fixed 101px stroke; on the site it spans the label it underlines (UX decision, SPEC §7) */
+  left: 0;
   top: calc(37.5 * var(--u));
-  width: calc(103 * var(--u));
+  width: var(--line-w);
   height: calc(3 * var(--u));
   border-radius: calc(1.5 * var(--u));
   background: var(--c-white);
   transform: translateX(var(--line-x)) scaleX(0);
   transform-origin: left center;
-  transition: transform var(--t-hover) var(--ease-out);
+  transition:
+    transform var(--t-hover) var(--ease-out),
+    width var(--t-hover) var(--ease-out);
   view-transition-name: nav-line;
 }
 
@@ -95,12 +98,18 @@
   height: calc(71 * var(--u));
   border-radius: 50%;
   color: var(--c-white);
-  transition: color var(--t-color) linear;
+  transition: color var(--t-color) var(--ease-soft);
 }
 
 .arrow svg {
   width: 100%;
   height: 100%;
+  transition: transform var(--t-press) var(--ease-soft);
+}
+
+.arrow:active:not([aria-disabled='true']) svg,
+.plus:active:not([aria-current='true']) svg {
+  transform: scale(0.92);
 }
 
 .arrow:hover,
@@ -119,11 +128,15 @@
   width: calc(181.4 * var(--u));
   height: calc(46 * var(--u));
   color: var(--c-white);
-  transition: color var(--t-color) linear;
+  transition: color var(--t-color) var(--ease-soft);
 }
 
 .goback:hover {
   color: var(--c-gray);
+}
+
+.goback:hover svg {
+  transform: translateX(calc(-4 * var(--u)));
 }
 
 .goback svg {
@@ -132,6 +145,7 @@
   top: calc(12.5 * var(--u));
   width: calc(29.2 * var(--u));
   height: calc(22.2 * var(--u));
+  transition: transform var(--t-hover) var(--ease-soft);
 }
 
 .goback span {
@@ -179,12 +193,13 @@
   width: calc(35.19 * var(--u));
   height: calc(35.19 * var(--u));
   color: var(--c-white);
-  transition: color var(--t-color) linear;
+  transition: color var(--t-color) var(--ease-soft);
 }
 
 .plus svg {
   width: 100%;
   height: 100%;
+  transition: transform var(--t-press) var(--ease-soft);
 }
 
 .plus:hover,

@@ -51,6 +51,7 @@ export const mountHeader = (root: ParentNode): (() => void) => {
       return;
     }
     nav.style.setProperty('--line-x', `${a.offsetLeft}px`);
+    nav.style.setProperty('--line-w', `${a.offsetWidth}px`);
     nav.classList.add('has-line');
   };
   const reset = () => moveTo(current);

@@ -19,5 +19,14 @@ const routes: Route[] = [
   { path: '/filmy/:slug', load: () => import('./pages/filmy/film') },
 ];
 
+// images fade in once loaded (load does not bubble, so listen in the capture phase)
+document.addEventListener(
+  'load',
+  (e) => {
+    if (e.target instanceof HTMLImageElement) e.target.classList.add('is-loaded');
+  },
+  true,
+);
+
 const root = document.getElementById('app');
 if (root) void new Router(root, routes, () => import('./pages/not-found')).start();
