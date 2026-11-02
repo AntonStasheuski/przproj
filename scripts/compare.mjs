@@ -7,6 +7,7 @@
  *   ref-name  file in figma/ref/all without extension, e.g. 437-3971__sn-3-art-rrj
  *   --full    full-page screenshot (long pages: home, film pages)
  *   --scale   downscale the page screenshot before diffing (home ref is 0.5×)
+ *   --height  viewport height (default 982; the home hero is viewport-high, 861 reproduces the Figma frame)
  * Needs the dev server (npm run dev, port 5173) or BASE_URL.
  * Writes qa/out/<ref>.{site,diff}.png and prints mismatch %.
  */
@@ -40,7 +41,7 @@ const scale = Number(opt('--scale', '1'));
 const full = args.includes('--full');
 
 const browser = await chromium.launch();
-const page = await browser.newPage({ viewport: { width: 1512, height: 982 }, deviceScaleFactor: 1, reducedMotion: 'reduce' });
+const page = await browser.newPage({ viewport: { width: 1512, height: Number(opt('--height', '982')) }, deviceScaleFactor: 1, reducedMotion: 'reduce' });
 const errors = [];
 page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
 page.on('pageerror', (e) => errors.push(String(e)));
