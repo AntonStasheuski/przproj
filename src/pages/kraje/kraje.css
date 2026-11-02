@@ -1,0 +1,359 @@
+/* Kraje: /filmy/kraje (249:520) and /filmy/kraje/:slug (4 slides per country). Geometry in design px (× --u). */
+
+.kraje,
+.kraj {
+  --pos: 0;
+  --shade: rgb(0 0 0 / 0.4);
+}
+
+/* ---------- start: quote + three country cards ---------- */
+
+.kraje-quote {
+  display: contents;
+}
+
+.kraje-quote__text {
+  position: absolute;
+  left: calc(51 * var(--u));
+  top: calc(236 * var(--u));
+  width: calc(352 * var(--u));
+  font-family: var(--f-ui);
+  font-weight: 700;
+  font-size: calc(36.507 * var(--u));
+  line-height: calc(53 * var(--u));
+  text-transform: uppercase;
+}
+
+.kraje-quote__mark {
+  position: absolute;
+  width: calc(48 * var(--u));
+  height: calc(133 * var(--u));
+  font-family: var(--f-quote);
+  font-weight: 700;
+  font-size: calc(110.536 * var(--u));
+  line-height: calc(133 * var(--u));
+  color: var(--c-red);
+}
+
+.kraje-quote__mark--open {
+  left: calc(45 * var(--u));
+  top: calc(174 * var(--u));
+}
+
+.kraje-quote__mark--close {
+  left: calc(356 * var(--u));
+  top: calc(633 * var(--u));
+}
+
+.kraje-quote__author {
+  position: absolute;
+  left: calc(118 * var(--u));
+  top: calc(718 * var(--u));
+  width: calc(211 * var(--u));
+  font-family: var(--f-ui);
+  font-weight: 700;
+  font-size: calc(19 * var(--u));
+  line-height: calc(24 * var(--u));
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.country-card {
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: calc(var(--y) * var(--u));
+  width: calc(var(--w) * var(--u));
+  height: calc(var(--h) * var(--u));
+}
+
+.country-card__photo,
+.country-card__shade,
+.country-card__figure {
+  position: absolute;
+  display: block;
+}
+
+.country-card__photo {
+  left: calc(var(--photo-x) * var(--u));
+  top: calc(var(--photo-y) * var(--u));
+  width: calc(var(--photo-w) * var(--u));
+  height: calc(var(--photo-h) * var(--u));
+  /* Figma hover variant = no photo; a short crossfade (≤ 0.2 s) instead of a hard switch is proposed */
+  transition: opacity var(--t-color) linear;
+}
+
+.country-card__shade {
+  left: calc(var(--photo-x) * var(--u));
+  top: calc(var(--photo-y) * var(--u));
+  width: calc(var(--photo-w) * var(--u));
+  height: calc(var(--photo-h) * var(--u));
+  background: var(--shade);
+}
+
+.country-card__figure {
+  left: calc(var(--fig-x) * var(--u));
+  top: calc(var(--fig-y) * var(--u));
+  width: calc(var(--fig-w) * var(--u));
+  height: calc(var(--fig-h) * var(--u));
+}
+
+.country-card img {
+  width: 100%;
+  height: 100%;
+}
+
+.country-card__name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* the three captions share one baseline on the page (box y 716, +2 for the font's line box) */
+  top: calc((718 - var(--y)) * var(--u));
+  font-family: var(--f-ui);
+  font-weight: 700;
+  font-size: calc(19 * var(--u));
+  line-height: calc(24 * var(--u));
+  text-align: center;
+  text-transform: uppercase;
+  transition: color var(--t-color) linear;
+}
+
+.country-card:hover .country-card__photo,
+.country-card:focus-visible .country-card__photo {
+  opacity: 0;
+}
+
+.country-card:hover .country-card__name,
+.country-card:focus-visible .country-card__name {
+  color: var(--c-red);
+}
+
+/* ---------- country: window with a 4-slide strip ---------- */
+
+.kraj-window {
+  position: absolute;
+  left: 0;
+  top: calc(35 * var(--u));
+  width: calc(1512 * var(--u));
+  height: calc(847 * var(--u));
+  overflow: hidden;
+}
+
+.kraj-strip {
+  display: flex;
+  height: 100%;
+  transform: translateX(calc(var(--pos) * -1512 * var(--u)));
+}
+
+.kraj-slide {
+  position: relative;
+  flex: none;
+  width: calc(1512 * var(--u));
+  height: 100%;
+}
+
+.kraj-art,
+.kraj-copy {
+  position: absolute;
+  inset: 0;
+}
+
+.kraj-piece {
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: calc(var(--y) * var(--u));
+  width: calc(var(--w) * var(--u));
+  height: calc(var(--h) * var(--u));
+}
+
+.kraj-piece img {
+  width: 100%;
+  height: 100%;
+}
+
+.kraj-cover {
+  position: absolute;
+  left: 0;
+  top: calc(793 * var(--u));
+  width: calc(1512 * var(--u));
+  height: calc(30 * var(--u));
+  background: var(--c-bg);
+}
+
+.kraj-copy {
+  pointer-events: none;
+}
+
+.kraj-copy > * {
+  position: absolute;
+  pointer-events: auto;
+}
+
+.kraj-copy__bar {
+  left: calc(var(--ax) * var(--u));
+  top: calc(129 * var(--u));
+}
+
+.kraj-copy__title {
+  left: calc(var(--ax) * var(--u));
+  top: calc(155 * var(--u));
+}
+
+.kraj-copy__sub {
+  left: calc(var(--tx) * var(--u));
+  top: calc(249 * var(--u));
+  font-family: var(--f-ui);
+  font-weight: 700;
+  font-size: calc(24 * var(--u));
+  line-height: calc(35 * var(--u));
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.kraj-copy__rule {
+  left: calc(var(--tx) * var(--u));
+  top: calc(301 * var(--u));
+  width: calc(var(--rule) * var(--u));
+  height: calc(2 * var(--u));
+  margin: 0;
+  border: 0;
+  background: var(--c-white);
+}
+
+.kraj-copy__text {
+  left: calc(var(--tx) * var(--u));
+  top: calc(328 * var(--u));
+  width: calc(var(--tw) * var(--u));
+}
+
+/* the design draws the link like the surrounding text (no underline, SPEC §7.5 analogue); keyboard focus still shows the ring */
+.kraj-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.kraj .arrow {
+  top: calc(320 * var(--u));
+  z-index: 1;
+}
+
+.kraj .arrow--prev {
+  left: calc(45 * var(--u));
+}
+
+.kraj .arrow--next {
+  left: calc(1396 * var(--u));
+}
+
+/* ---------- mobile: one column, slides stacked, collage scaled to the width ---------- */
+
+@media (max-width: 1023px) {
+  .kraje-quote {
+    display: block;
+    padding: calc(24 * var(--u)) calc(20 * var(--u));
+  }
+
+  .kraje-quote__text,
+  .kraje-quote__mark,
+  .kraje-quote__author {
+    position: static;
+    width: auto;
+    height: auto;
+  }
+
+  .kraje-quote__text {
+    font-size: calc(24 * var(--u));
+    line-height: calc(34 * var(--u));
+  }
+
+  .kraje-quote__mark {
+    font-size: calc(64 * var(--u));
+    line-height: calc(50 * var(--u));
+  }
+
+  .kraje-quote__mark--close {
+    text-align: right;
+  }
+
+  .kraje-quote__author {
+    font-size: calc(16 * var(--u));
+    line-height: calc(22 * var(--u));
+    text-align: left;
+  }
+
+  .kraje-cards {
+    display: grid;
+    gap: calc(24 * var(--u));
+    padding-bottom: calc(24 * var(--u));
+  }
+
+  .country-card {
+    position: relative;
+    left: auto;
+    top: auto;
+    display: block;
+    margin-inline: auto;
+  }
+
+  .kraj-window {
+    position: static;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .kraj-strip {
+    display: block;
+    transform: none;
+  }
+
+  .kraj-slide {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding-block: calc(24 * var(--u));
+  }
+
+  .kraj-copy {
+    position: static;
+    padding-inline: calc(16 * var(--u));
+    display: grid;
+    gap: calc(10 * var(--u));
+    justify-items: start;
+  }
+
+  .kraj-copy > * {
+    position: static;
+    width: auto;
+  }
+
+  .kraj-copy__title {
+    font-size: calc(32 * var(--u));
+    line-height: calc(38 * var(--u));
+  }
+
+  .kraj-copy__sub {
+    font-size: calc(18 * var(--u));
+    line-height: calc(26 * var(--u));
+    white-space: normal;
+  }
+
+  .kraj-copy__rule {
+    width: 100%;
+  }
+
+  /* the collage keeps its 1512×847 composition, scaled to the screen width */
+  .kraj-art {
+    --u: calc(100vw / 1512);
+    position: relative;
+    order: 1;
+    width: 100vw;
+    height: calc(847 * var(--u));
+    overflow: hidden;
+  }
+
+  .kraj-cover,
+  .kraj .arrow {
+    display: none;
+  }
+}
