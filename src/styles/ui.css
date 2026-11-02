@@ -67,9 +67,10 @@
 
 .site-nav__line {
   position: absolute;
-  left: 0;
-  top: calc(38.5 * var(--u));
-  width: calc(101 * var(--u));
+  /* 101px stroke + round caps (1.5px each side) */
+  left: calc(-1 * var(--u));
+  top: calc(37.5 * var(--u));
+  width: calc(103 * var(--u));
   height: calc(3 * var(--u));
   border-radius: calc(1.5 * var(--u));
   background: var(--c-white);
