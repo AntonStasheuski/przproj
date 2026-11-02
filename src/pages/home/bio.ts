@@ -51,14 +51,19 @@ export const mountBio = (root: ParentNode, disposer: Disposer): void => {
       const a = slides[from];
       const b = slides[to];
       if (!a || !b) return;
+      // start from what is on screen now (a fade may still be running)
+      const oa = Number(getComputedStyle(a).opacity);
+      const ob = Number(getComputedStyle(b).opacity);
+      a.style.opacity = String(oa);
+      b.style.opacity = String(ob);
       a.classList.remove('is-active');
       b.classList.add('is-active');
       a.setAttribute('aria-hidden', 'true');
       a.inert = true;
       b.removeAttribute('aria-hidden');
       b.inert = false;
-      play(a, { opacity: 0 }, EASE_OUT);
-      play(b, { opacity: 1 }, EASE_OUT);
+      play(a, { opacity: [oa, 0] }, EASE_OUT);
+      play(b, { opacity: [ob, 1] }, EASE_OUT);
       if (status) status.textContent = `Slajd ${to + 1} z ${slides.length}`;
     },
   });

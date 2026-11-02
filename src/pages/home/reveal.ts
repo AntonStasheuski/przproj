@@ -17,10 +17,12 @@ export const mountReveal = (root: ParentNode): (() => void) => {
         if (!e.isIntersecting) continue;
         const el = e.target as HTMLElement;
         io.unobserve(el);
-        el.classList.remove('is-pending');
-        animate(el, { opacity: [0, 1], y: [24, 0] }, { duration: 0.6, ease: [0, 0, 0.58, 1] }).then(() =>
-          el.style.removeProperty('transform'),
-        );
+        // the hidden class stays until the end, so no frame shows the final state early
+        void animate(el, { opacity: [0, 1], y: [24, 0] }, { duration: 0.6, ease: [0, 0, 0.58, 1] }).then(() => {
+          el.classList.remove('is-pending');
+          el.style.removeProperty('opacity');
+          el.style.removeProperty('transform');
+        });
       }
     },
     { rootMargin: '0px 0px -12% 0px', threshold: 0 },

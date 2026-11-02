@@ -47,7 +47,16 @@ export const mountSelector = (root: ParentNode, disposer: Disposer): void => {
     if (i === current || !from || !to) return;
     const w0 = width(from);
     const w1 = width(to);
+    const t0 = from.querySelector('.sel__title');
+    const t1 = to.querySelector('.sel__title');
+    const o0 = t0 ? Number(getComputedStyle(t0).opacity) : 1;
+    const o1 = t1 ? Number(getComputedStyle(t1).opacity) : 0;
     current = i;
+    // pin the on-screen values first: the class swap below must not show the end state for a frame
+    from.style.setProperty('--w', String(w0));
+    to.style.setProperty('--w', String(w1));
+    if (t0 instanceof HTMLElement) t0.style.opacity = String(o0);
+    if (t1 instanceof HTMLElement) t1.style.opacity = String(o1);
     const hadFocus = to.contains(document.activeElement);
 
     from.classList.remove('is-open');
@@ -61,10 +70,8 @@ export const mountSelector = (root: ParentNode, disposer: Disposer): void => {
 
     play(from, { '--w': [w0, CLOSED] }, SPRING_GENTLE);
     play(to, { '--w': [w1, OPEN] }, SPRING_GENTLE);
-    const t0 = from.querySelector('.sel__title');
-    const t1 = to.querySelector('.sel__title');
-    if (t0) play(t0, { opacity: 0 }, { ...EASE_OUT, duration: 0.2 });
-    if (t1) play(t1, { opacity: [0, 1] }, { ...EASE_OUT, delay: 0.35 });
+    if (t0) play(t0, { opacity: [o0, 0] }, { ...EASE_OUT, duration: 0.2 });
+    if (t1) play(t1, { opacity: [o1, 1] }, { ...EASE_OUT, delay: 0.35 });
   };
 
   cols.forEach((c, i) => {
