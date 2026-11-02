@@ -5,3 +5,6 @@ figma/screens
 qa/out
 .playwright-mcp
 figma/assets-src
+
+# Local Netlify folder
+.netlify
