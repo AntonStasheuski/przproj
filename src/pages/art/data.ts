@@ -41,6 +41,10 @@ export interface Series {
   layers: Layer[];
   /** fact overlays: per fact, which overlay rasters are visible (AK frames accumulate them) */
   overlays: (fact: number) => number[];
+  /** overlay rasters that sit a pixel off the poster origin in their frame */
+  overlayShift?: Partial<Record<number, { x?: number; y?: number }>>;
+  /** story slides whose text box is wider than the series default (design px) */
+  stepWidth?: Partial<Record<number, number>>;
   lettering: Lettering[];
   /** AK only: masked texture (exclusion) and the gold highlight (screen) over «Aszik Kerib» */
   texture?: { x: number; y: number; w: number; h: number; highlightIn: number[] };
@@ -107,6 +111,8 @@ export const SERIES: Record<Slug, Series> = {
       { key: 'layer-8', from: 5 },
     ],
     overlays: single,
+    overlayShift: { 1: { y: 1 } },
+    stepWidth: { 1: 722 },
     lettering: [
       { src: 'title', x: 51.02, y: 624.74, w: 429, h: 76 },
       { src: 'signature', x: 207.91, y: 723.8, w: 130, h: 9 },
@@ -121,6 +127,7 @@ export const SERIES: Record<Slug, Series> = {
     steps: 7,
     layers: range(8, 1).map((n) => ({ key: `layer-${n}`, from: n - 1 })),
     overlays: single,
+    overlayShift: { 0: { x: 1 } },
     lettering: [
       { src: 'title-sajat', x: 140.61, y: 38.59, w: 267, h: 78 },
       { src: 'title-nowa', x: 132, y: 128.35, w: 285, h: 64 },

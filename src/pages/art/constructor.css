@@ -1,0 +1,385 @@
+/* Poster constructor (SPEC §3.1): poster on the left, heading + text ribbons on the right. */
+.art-con {
+  --pu: var(--u);
+  --gold: #feda8c;
+  /* per-series offsets of the Figma frames (art-czp-ak.md §2, texts report) */
+  --t1-x: 5;
+  --t1-y: 6;
+  --head-pad: 0;
+  --head-text-y: 35;
+  --intro-y: 0;
+  --story-x: 4;
+  --story-w: 718;
+  --story-lh: 37;
+  --fact-x: 4;
+  --fact-y: 12;
+  --fact-w: 718;
+  --fact-lh: 37;
+  --final-w: 706;
+}
+
+.art-con--czp {
+  --t1-x: 4;
+  --t1-y: 2;
+  --head-pad: 5;
+  --years-pad: 1;
+  --head-text-y: 44;
+  --intro-y: 2;
+  --story-x: 0;
+  --story-w: 706;
+  --story-lh: 28.681;
+  --fact-x: 0;
+  --fact-y: 2;
+  --fact-w: 722;
+  --fact-lh: 28.681;
+}
+
+.art-con--ak {
+  --intro-y: 12;
+  --final-w: 614;
+}
+
+/* ---------- poster ---------- */
+.art-poster {
+  position: absolute;
+  left: calc(59 * var(--u));
+  top: calc(var(--top) * var(--u));
+  width: calc(545 * var(--pu));
+  height: calc(771 * var(--pu));
+}
+
+.art-poster__layer,
+.art-poster__letters,
+.art-poster__texture,
+.art-poster__highlight,
+.art-poster__plus {
+  position: absolute;
+  left: calc(var(--x, 0) * var(--pu));
+  top: calc(var(--y, 0) * var(--pu));
+}
+
+.art-poster__layer img,
+.art-poster__letters,
+.art-poster__texture img {
+  width: calc(var(--w) * var(--pu));
+  height: calc(var(--h) * var(--pu));
+}
+
+.art-poster__layer,
+.art-poster__plus {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.art-poster__final {
+  inset: 0;
+}
+
+/* «Aszik Kerib»: worn texture and gold film clipped to the letters, as in Figma (exclusion / screen) */
+.art-poster__texture,
+.art-poster__highlight {
+  width: calc(var(--w) * var(--pu));
+  height: calc(var(--h) * var(--pu));
+  mask-image: url('/img/art/ak/title-aszik.svg'), url('/img/art/ak/title-kerib.svg');
+  mask-repeat: no-repeat;
+  mask-size:
+    calc(331 * var(--pu)) calc(75 * var(--pu)),
+    calc(319 * var(--pu)) calc(72 * var(--pu));
+  mask-position:
+    0 0,
+    calc(0.78 * var(--pu)) calc(98.89 * var(--pu));
+}
+
+.art-poster__texture {
+  mix-blend-mode: exclusion;
+}
+
+.art-poster__highlight {
+  background: var(--gold);
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+.art-poster__plus .plus {
+  position: static;
+  display: block;
+}
+
+.art-poster__plus .plus[aria-current='true'] {
+  cursor: default;
+}
+
+/* ---------- heading ribbon ---------- */
+.art-head {
+  position: absolute;
+  left: calc(634 * var(--u));
+  top: calc(130 * var(--u));
+  width: calc(712 * var(--u));
+  height: calc(122 * var(--u));
+  overflow: hidden;
+}
+
+.art-head__track {
+  display: flex;
+  height: 100%;
+}
+
+.art-head__slide,
+.art-head__fact {
+  flex: 0 0 100%;
+  padding: calc(var(--head-text-y) * var(--u)) 0 0 calc(var(--head-pad) * var(--u));
+  font-family: var(--f-head);
+  font-weight: 700;
+  font-size: calc(58 * var(--u));
+  line-height: calc(69 * var(--u));
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.art-head__slide--start {
+  padding: calc(var(--t1-y) * var(--u)) 0 0 calc(var(--t1-x) * var(--u));
+  font-size: calc(98.076 * var(--u));
+  line-height: calc(117 * var(--u));
+}
+
+.art-head__slide--years {
+  padding-left: calc(var(--years-pad, var(--head-pad)) * var(--u));
+}
+
+.art-head__fact {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.art-rule {
+  position: absolute;
+  left: calc(639 * var(--u));
+  top: calc(255 * var(--u));
+  width: calc(873 * var(--u));
+  height: calc(2 * var(--u));
+  background: var(--c-white);
+  transform: rotate(-0.21deg);
+  transform-origin: left center;
+}
+
+/* ---------- text ribbon ---------- */
+.art-body {
+  position: absolute;
+  left: calc(639 * var(--u));
+  top: calc(278 * var(--u));
+  width: calc(722 * var(--u));
+  height: calc(600 * var(--u));
+  overflow: hidden;
+  display: grid;
+}
+
+.art-body__track,
+.art-body__fact {
+  grid-area: 1 / 1;
+}
+
+.art-body__track {
+  display: flex;
+  align-items: flex-start;
+}
+
+.art-body__slide {
+  flex: 0 0 100%;
+}
+
+.art-body__fact {
+  opacity: 0;
+}
+
+/* double spaces and leading spaces after hard breaks are kept from the design */
+.art-intro,
+.art-uwaga,
+.art-story {
+  white-space: pre-wrap;
+}
+
+.art-intro,
+.art-uwaga {
+  font-family: var(--f-ui);
+  font-weight: 700;
+  font-size: calc(20 * var(--u));
+  line-height: calc(29 * var(--u));
+  text-transform: uppercase;
+}
+
+.art-intro {
+  margin-top: calc(var(--intro-y) * var(--u));
+  width: calc(706 * var(--u));
+}
+
+.art-uwaga {
+  position: absolute;
+  top: calc((var(--intro-y) + 149) * var(--u));
+  width: calc(669 * var(--u));
+}
+
+.art-body__slide--intro {
+  position: relative;
+}
+
+.art-uwaga__label {
+  color: var(--c-red);
+}
+
+.art-intro--final {
+  margin-top: calc(12 * var(--u));
+  width: calc(var(--final-w) * var(--u));
+  line-height: calc(30 * var(--u));
+}
+
+.art-story {
+  margin: calc(12 * var(--u)) 0 0 calc(var(--story-x) * var(--u));
+  width: calc(var(--story-w) * var(--u));
+  font-family: var(--f-text);
+  font-size: calc(23 * var(--u));
+  line-height: calc(var(--story-lh) * var(--u));
+}
+
+.art-story--fact {
+  margin: calc(var(--fact-y) * var(--u)) 0 0 calc(var(--fact-x) * var(--u));
+  width: calc(var(--fact-w) * var(--u));
+  line-height: calc(var(--fact-lh) * var(--u));
+}
+
+/* CzP «scenografia» is set in Cambay Bold in the frame */
+.art-story--bold {
+  font-weight: 700;
+}
+
+.art-story em {
+  font-style: italic;
+}
+
+/* ---------- controls ---------- */
+.art-con__next {
+  left: calc(1396 * var(--u));
+  top: calc(320 * var(--u));
+}
+
+.art-con__prev {
+  left: calc(1396 * var(--u));
+  top: calc(416 * var(--u));
+}
+
+.art-con__back {
+  left: calc(1243 * var(--u));
+  top: calc(878 * var(--u));
+}
+
+/* ---------- mobile: one column ---------- */
+@media (max-width: 1023px) {
+  .art-con {
+    --pu: calc(var(--u) * 358 / 545);
+  }
+
+  .art-con__main {
+    display: flex;
+    flex-direction: column;
+    padding: calc(8 * var(--u)) calc(16 * var(--u)) calc(24 * var(--u));
+  }
+
+  .art-head,
+  .art-rule,
+  .art-body,
+  .art-poster {
+    position: relative;
+    left: auto;
+    top: auto;
+  }
+
+  .art-head {
+    order: 1;
+    width: 100%;
+    height: auto;
+  }
+
+  .art-head__slide,
+  .art-head__fact,
+  .art-head__slide--start {
+    padding: 0;
+    font-size: calc(32 * var(--u));
+    line-height: calc(40 * var(--u));
+    white-space: normal;
+  }
+
+  .art-head__fact {
+    position: absolute;
+  }
+
+  .art-rule {
+    order: 2;
+    width: 100%;
+    height: 1px;
+    margin: calc(8 * var(--u)) 0 calc(16 * var(--u));
+    transform: none;
+  }
+
+  .art-poster {
+    order: 3;
+  }
+
+  .art-con__arrows {
+    order: 4;
+    display: flex;
+    justify-content: flex-end;
+    gap: calc(16 * var(--u));
+    margin: calc(16 * var(--u)) 0;
+  }
+
+  /* prev first in reading order on a row */
+  .art-con__prev {
+    order: -1;
+  }
+
+  .art-con__next,
+  .art-con__prev {
+    left: auto;
+    top: auto;
+  }
+
+  .art-body {
+    order: 5;
+    width: 100%;
+    height: auto;
+  }
+
+  .art-intro,
+  .art-uwaga,
+  .art-intro--final {
+    width: auto;
+    margin-top: 0;
+    font-size: calc(15 * var(--u));
+    line-height: calc(22 * var(--u));
+  }
+
+  .art-uwaga {
+    position: static;
+    margin-top: calc(24 * var(--u));
+  }
+
+  .art-story,
+  .art-story--fact {
+    width: auto;
+    margin: 0;
+    font-size: calc(17 * var(--u));
+    line-height: calc(26 * var(--u));
+  }
+
+  .art-story br,
+  .art-intro br {
+    display: none;
+  }
+
+  .art-con__back {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: 0 calc(16 * var(--u)) calc(24 * var(--u)) auto;
+  }
+}
