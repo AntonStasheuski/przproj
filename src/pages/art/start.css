@@ -1,0 +1,72 @@
+/* /art-project — frame 29:88 */
+.art-start__list {
+  position: absolute;
+  left: calc(107 * var(--u));
+  top: calc(143 * var(--u));
+  display: grid;
+  grid-template-columns: repeat(3, calc(403 * var(--u)));
+  column-gap: calc(45 * var(--u));
+}
+
+.art-start__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.art-start__poster img {
+  width: calc(403 * var(--u));
+  height: calc(569 * var(--u));
+  transition: filter var(--t-hover) var(--ease-out);
+}
+
+/* hover variant in Figma = the same raster with saturation −1 */
+.art-start__card:hover .art-start__poster img,
+.art-start__card:focus-visible .art-start__poster img {
+  filter: grayscale(1);
+}
+
+.art-start__name {
+  margin-top: calc(13 * var(--u));
+  font-family: var(--f-ui);
+  font-weight: 700;
+  font-size: calc(24 * var(--u));
+  line-height: calc(38 * var(--u));
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.art-start__years {
+  margin-top: calc(2 * var(--u));
+  font-family: var(--f-text);
+  font-size: calc(25 * var(--u));
+  line-height: calc(41 * var(--u));
+}
+
+@media (max-width: 1023px) {
+  .art-start__list {
+    position: static;
+    grid-template-columns: 1fr;
+    row-gap: calc(32 * var(--u));
+    padding: calc(24 * var(--u)) calc(16 * var(--u)) calc(40 * var(--u));
+  }
+
+  .art-start__poster img {
+    width: calc(358 * var(--u));
+    height: calc(505.5 * var(--u));
+  }
+
+  .art-start__name {
+    margin-top: calc(12 * var(--u));
+    font-size: calc(18 * var(--u));
+    line-height: calc(26 * var(--u));
+    white-space: normal;
+  }
+
+  .art-start__years {
+    margin-top: 0;
+    font-size: calc(18 * var(--u));
+    line-height: calc(26 * var(--u));
+  }
+}
